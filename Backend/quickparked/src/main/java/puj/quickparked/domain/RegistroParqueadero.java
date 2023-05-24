@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import java.time.LocalDate;
 import java.util.Set;
 import lombok.Getter;
@@ -21,8 +22,13 @@ import lombok.Setter;
 public class RegistroParqueadero {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(
+        nullable = false,
+        updatable = false
+    )
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Column(nullable = false)
@@ -38,22 +44,22 @@ public class RegistroParqueadero {
     private Double montoReserva;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_trabajador_id", nullable = false)
+    @JoinColumn(name = "usuarioTrabajadorId", nullable = false)
     private Usuario usuarioTrabajador;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estado_registro_parqueadero_id", nullable = false)
+    @JoinColumn(name = "estadoRegistroParqueaderoId", nullable = false)
     private EstadoRegistroParqueadero estadoRegistroParqueadero;
 
     @OneToMany(mappedBy = "reserva")
     private Set<Venta> reservaVentas;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sede_parqueadero_id", nullable = false)
+    @JoinColumn(name = "sedeParqueaderoId", nullable = false)
     private SedeParqueadero sedeParqueadero;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehiculo_id", nullable = false)
+    @JoinColumn(name = "vehiculoId", nullable = false)
     private Vehiculo vehiculo;
 
 }

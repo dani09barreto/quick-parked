@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,13 @@ import lombok.Setter;
 public class Usuario {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(
+        nullable = false,
+        updatable = false
+    )
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Column(nullable = false)
@@ -31,20 +37,29 @@ public class Usuario {
     private String password;
 
     @Column(nullable = false)
+    private String nombres;
+
+    @Column(nullable = false)
+    private String apellidos;
+
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String telefono;
 
+    @OneToMany(mappedBy = "usuarioPropietario")
+    private Set<Parqueadero> usuarioPropietarioParqueaderos;
+
     @OneToMany(mappedBy = "usuarioTrabajador")
     private Set<RegistroParqueadero> usuarioTrabajadorRegistroParqueaderos;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sede_parqueadero_id")
+    @JoinColumn(name = "sedeParqueaderoId")
     private SedeParqueadero sedeParqueadero;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo_usuario_id", nullable = false)
+    @JoinColumn(name = "tipoUsuarioId", nullable = false)
     private TipoUsuario tipoUsuario;
 
     @OneToMany(mappedBy = "usuario")

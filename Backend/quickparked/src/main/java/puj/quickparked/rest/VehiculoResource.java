@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/vehiculos", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/vehiculos", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VehiculoResource {
 
     private final VehiculoService vehiculoService;

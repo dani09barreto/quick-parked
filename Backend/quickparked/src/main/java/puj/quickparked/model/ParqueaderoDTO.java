@@ -19,4 +19,7 @@ public class ParqueaderoDTO {
     @Size(max = 255)
     private String nit;
 
+    @NotNull
+    private Integer usuarioPropietario;
+
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,8 +20,13 @@ import lombok.Setter;
 public class Venta {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(
+        nullable = false,
+        updatable = false
+    )
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Column(nullable = false)
@@ -33,7 +39,7 @@ public class Venta {
     private Double monto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reserva_id", nullable = false)
+    @JoinColumn(name = "reservaId", nullable = false)
     private RegistroParqueadero reserva;
 
 }

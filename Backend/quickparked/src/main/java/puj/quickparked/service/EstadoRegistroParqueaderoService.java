@@ -1,6 +1,5 @@
 package puj.quickparked.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import puj.quickparked.domain.EstadoRegistroParqueadero;
 import puj.quickparked.model.EstadoRegistroParqueaderoDTO;
 import puj.quickparked.repos.EstadoRegistroParqueaderoRepository;

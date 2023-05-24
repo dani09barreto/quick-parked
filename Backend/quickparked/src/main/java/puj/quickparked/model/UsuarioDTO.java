@@ -22,6 +22,14 @@ public class UsuarioDTO {
 
     @NotNull
     @Size(max = 255)
+    private String nombres;
+
+    @NotNull
+    @Size(max = 255)
+    private String apellidos;
+
+    @NotNull
+    @Size(max = 255)
     private String email;
 
     @NotNull

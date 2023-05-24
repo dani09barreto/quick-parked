@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,13 @@ import lombok.Setter;
 public class SedeParqueadero {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(
+        nullable = false,
+        updatable = false
+    )
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Column(nullable = false)
@@ -36,7 +42,7 @@ public class SedeParqueadero {
     @Column(nullable = false)
     private Integer cupo;
 
-    @Column(columnDefinition = "longtext")
+    @Column(columnDefinition = "text")
     private String imagen;
 
     @OneToMany(mappedBy = "sedeParqueadero")
@@ -46,7 +52,7 @@ public class SedeParqueadero {
     private Set<RegistroParqueadero> sedeParqueaderoRegistroParqueaderos;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parqueadero_id", nullable = false)
+    @JoinColumn(name = "parqueaderoId", nullable = false)
     private Parqueadero parqueadero;
 
 }

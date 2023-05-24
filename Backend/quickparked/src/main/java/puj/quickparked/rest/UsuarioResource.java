@@ -1,5 +1,7 @@
 package puj.quickparked.rest;
 
+import puj.quickparked.model.IniciarSesionDTO;
+import puj.quickparked.model.RespuestaIniciarSesionDTO;
 import puj.quickparked.model.UsuarioDTO;
 import puj.quickparked.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioResource {
 
     private final UsuarioService usuarioService;
@@ -54,6 +56,11 @@ public class UsuarioResource {
     public ResponseEntity<Void> deleteUsuario(@PathVariable final Integer id) {
         usuarioService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/IniciarSesion")
+    public ResponseEntity<RespuestaIniciarSesionDTO> iniciarSesion(@RequestBody @Valid final IniciarSesionDTO iniciarSesionDTO) {
+        return new ResponseEntity<>(usuarioService.iniciarSesion(iniciarSesionDTO), HttpStatus.OK);
     }
 
 }

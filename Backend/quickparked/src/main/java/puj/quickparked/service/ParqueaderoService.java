@@ -1,8 +1,10 @@
 package puj.quickparked.service;
 
 import puj.quickparked.domain.Parqueadero;
+import puj.quickparked.domain.Usuario;
 import puj.quickparked.model.ParqueaderoDTO;
 import puj.quickparked.repos.ParqueaderoRepository;
+import puj.quickparked.repos.UsuarioRepository;
 import puj.quickparked.util.NotFoundException;
 import java.util.List;
 import org.springframework.data.domain.Sort;
@@ -13,9 +15,12 @@ import org.springframework.stereotype.Service;
 public class ParqueaderoService {
 
     private final ParqueaderoRepository parqueaderoRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public ParqueaderoService(final ParqueaderoRepository parqueaderoRepository) {
+    public ParqueaderoService(final ParqueaderoRepository parqueaderoRepository,
+            final UsuarioRepository usuarioRepository) {
         this.parqueaderoRepository = parqueaderoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<ParqueaderoDTO> findAll() {
@@ -53,6 +58,7 @@ public class ParqueaderoService {
         parqueaderoDTO.setId(parqueadero.getId());
         parqueaderoDTO.setNombre(parqueadero.getNombre());
         parqueaderoDTO.setNit(parqueadero.getNit());
+        parqueaderoDTO.setUsuarioPropietario(parqueadero.getUsuarioPropietario() == null ? null : parqueadero.getUsuarioPropietario().getId());
         return parqueaderoDTO;
     }
 
@@ -60,6 +66,9 @@ public class ParqueaderoService {
             final Parqueadero parqueadero) {
         parqueadero.setNombre(parqueaderoDTO.getNombre());
         parqueadero.setNit(parqueaderoDTO.getNit());
+        final Usuario usuarioPropietario = parqueaderoDTO.getUsuarioPropietario() == null ? null : usuarioRepository.findById(parqueaderoDTO.getUsuarioPropietario())
+                .orElseThrow(() -> new NotFoundException("usuarioPropietario not found"));
+        parqueadero.setUsuarioPropietario(usuarioPropietario);
         return parqueadero;
     }
 
