@@ -1,1 +1,49 @@
-<p>registro-vehiculos works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro vehiculos</title>
+</head>
+
+<body>
+    <header>
+        <div class="btnUser">
+            <button class="button">
+                <img src="/assets/user.png" alt="Imagen" class="svgIcon">
+            </button>
+        </div>
+        <div class="btnLogout">
+            <button class="button">
+                <img src="/assets/exit.png" alt="Imagen" class="svgIcon">
+            </button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="cont-izq">
+            <img src="/assets/logo_quikParkedHorizontal.png" alt="Imagen">
+            <div class="switch">
+                <input type="radio" id="radio1" name="radioGroup" checked>
+                <label for="radio1">Carro</label>
+
+                <input type="radio" id="radio2" name="radioGroup">
+                <label for="radio2">Moto</label>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="placa">Placa:</label>
+                    <input type="text" class="form-control" id="placa" name="placa" placeholder="Ingrese su Placa" [(ngModel)]="placa">
+                  </div>
+                <button type="submit" class="btn btn-primary" (click)="ingresarPlaca()">Ingresar Placa</button>
+            </form>
+        </div>
+        <div class="cont-der">
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

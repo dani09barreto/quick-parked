@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'qp-registro-vehiculos',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./registro-vehiculos.component.scss']
 })
 export class RegistroVehiculosComponent {
+  constructor(private router: Router) {}
+  placa: string = '';
+
+  ingresarPlaca():void{
+
+  }
 
 }

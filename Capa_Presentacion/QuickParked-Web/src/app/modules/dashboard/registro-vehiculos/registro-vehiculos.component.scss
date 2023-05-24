@@ -1,0 +1,97 @@
+header {
+    background-color: #DADADA;
+    display: flex;
+    align-items: center;
+    border-top: none;
+    height: 70px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    /* Agregar una sombra abajo del encabezado */
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #2489C3;
+    border: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 30px rgba(10, 10, 10, 0.164);
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.btnUser {
+    padding-left: 30px;
+    padding-right: 1370px;
+}
+
+.svgIcon {
+    width: 30px;
+    transition-duration: .3s;
+}
+
+.cont-izq img {
+    width: 80%;
+    padding-left: 30px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+.cont-izq {
+    width: 40%;
+    height: 100%;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    background-color: #edefef;
+    border-right: 5px;
+    border-right: black;
+}
+
+.cont-der {
+    width: 60%;
+    height: 100%;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    background-color: #edefef;
+}
+
+.container::after {
+    display: table;
+    padding: 20px;
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch input[type="radio"] {
+    transform: scale(1.5);
+    padding: 20px;
+}
+
+.switch label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    /* Fuente en negrita */
+    color: #908a8a;
+    padding: 10px;
+}
+
+.login-form {
+	max-width: 500px;
+	border-radius: 10px;
+}
