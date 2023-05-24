@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RecuperarContraseniaComponent } from './recuperar-contrasenia/recuperar-contrasenia.component';
 
@@ -11,7 +12,8 @@ import { RecuperarContraseniaComponent } from './recuperar-contrasenia/recuperar
     RecuperarContraseniaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class AutenticacionModule { }
