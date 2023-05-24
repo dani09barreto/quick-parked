@@ -29,11 +29,13 @@ export class AuthService {
   }
   login(username: string, password: string) {
     const url = `${environment.backendAPI}/api/usuarios/IniciarSesion`;
-  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     const objIniciarSesion: IniciarSesion = new IniciarSesion();
     objIniciarSesion.username = username;
     objIniciarSesion.password = password;
-    return this.http.post<RespuestaIniciarSesion>(url, objIniciarSesion).pipe(
+    return this.http.post<RespuestaIniciarSesion>(url, objIniciarSesion, { headers }).pipe(
       map((response) => {
         // extract the token and user from the response
         const token = response.token;
