@@ -14,18 +14,15 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  ngOnInit(): void {
-    this.iniciarSesion();
-  }
-
   iniciarSesion(): void {
+    console.log(this.username)
+    console.log(this.password)
     this.authService.login(this.username, this.password).subscribe(
       () => {
-        // Lógica después de iniciar sesión exitosamente
+        this.router.navigate(['/registro-vehiculos'])
       },
       (error) => {
-        // Lógica para manejar el error de inicio de sesión
-        // Mostrar mensaje de error, restablecer campos del formulario, etc.
+        alert("Correo o contraseña invalido")
       }
     );
   }
