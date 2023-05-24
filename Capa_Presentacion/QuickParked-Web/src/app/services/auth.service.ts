@@ -28,7 +28,7 @@ export class AuthService {
     return false;
   }
   login(username: string, password: string) {
-    const url = `${environment.backendAPI}/IniciarSesion`;
+    const url = `${environment.backendAPI}/api/usuarios/IniciarSesion`;
   
     const objIniciarSesion: IniciarSesion = new IniciarSesion();
     objIniciarSesion.username = username;
