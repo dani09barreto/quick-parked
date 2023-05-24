@@ -1,3 +1,3 @@
 export const environment ={
-    backendAPI:"http://localhost:8080"
+    backendAPI:"https://quickparked.herokuapp.com"
 }
