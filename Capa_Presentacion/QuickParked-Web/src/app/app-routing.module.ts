@@ -9,6 +9,7 @@ import { RecuperarContraseniaComponent } from './modules/autenticacion/recuperar
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+  
   {path:'registro-vehiculos',component:RegistroVehiculosComponent,canActivate:[AuthGuard]},
   {path:'cuenta',component:AjusteCuentaComponent,canActivate:[AuthGuard]},
   {path:'cobrar',component:CobrarComponent,canActivate:[AuthGuard]},
