@@ -9,9 +9,10 @@
 </head>
 
 <body>
+    
     <header>
         <div class="btnUser">
-            <button class="button">
+            <button class="button" (click)="toggleMostrarComponenteHijo()">
                 <img src="/assets/user.png" alt="Imagen" class="svgIcon">
             </button>
         </div>
@@ -21,7 +22,10 @@
             </button>
         </div>
     </header>
+    
+    
     <div class="contenedor">
+        
         <div class="cont-izq">
             <img src="/assets/logo_quikParkedHorizontal.png" alt="Imagen">
             <div class="switch-container">
@@ -88,17 +92,12 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="botonCobro">
                 <button type="submit" class="btn3" (click)="ingresarPlaca()">Generar Cobro</button>
-
-
             </div>
-
         </div>
-
     </div>
-
+ 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
