@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AjusteCuentaComponent } from '../ajuste-cuenta/ajuste-cuenta.component';
 import { DashboardModule } from '../dashboard.module';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
 import { tipoVehiculo } from 'src/app/shared/model/tipo.vehiculo';
@@ -15,6 +16,7 @@ export class RegistroVehiculosComponent {
   cuposDisponibles: string = 'Cupos Disponibles: ';
   cuposReservados: string = 'Cupos Reservados: ';
   placaTouched: boolean = false;
+  mostrarComponenteHijo: boolean= false;
   tipoVehiculos: tipoVehiculo[] = []
   materials: string[] = ['Material 1', 'Material 2', 'Material 3'];
   tipoVehiculoSeleccionado: string = 'Tipo de vehiculo';
@@ -61,6 +63,10 @@ export class RegistroVehiculosComponent {
   }
   generarCobro():void{
 
+  }
+  toggleMostrarComponenteHijo() {
+    this.mostrarComponenteHijo = !this.mostrarComponenteHijo;
+    console.log(this.mostrarComponenteHijo)
   }
 
 }

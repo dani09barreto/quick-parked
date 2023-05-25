@@ -194,7 +194,7 @@ header {
 .tituloLista {
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-left: 70px;
 }
 
 .titulo {
@@ -279,5 +279,8 @@ header {
   
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+  .oculto {
+    display: none;
   }
   
