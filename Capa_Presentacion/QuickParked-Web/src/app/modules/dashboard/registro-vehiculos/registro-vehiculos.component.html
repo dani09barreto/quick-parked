@@ -26,30 +26,31 @@
             <img src="/assets/logo_quikParkedHorizontal.png" alt="Imagen">
             <div class="switch-container">
                 <div class="switch1">
-                    <input type="radio" id="radio1" name="radioGroup" checked>
+                    <input type="radio" id="radio1" name="radioGroup" checked (click)="updateRegex('carro')">
                     <label for="radio1">Carro</label>
                 </div>
                 <div class="switch2">
-                    <input type="radio" id="radio2" name="radioGroup">
+                    <input type="radio" id="radio2" name="radioGroup" (click)="updateRegex('moto')">
                     <label for="radio2">Moto</label>
                 </div>
             </div>
             <form class="login-form">
                 <div class="form-group">
                     <input type="text" class="form-control custom-input" id="placa" name="placa" placeholder="Placa"
-                        [(ngModel)]="placa">
+                        [(ngModel)]="placa" required maxlength="6" [ngClass]="{ 'invalid-input': !placaValida()}"
+                        (input)="convertToUppercase()" (blur)="placaTouched = true">
+                    <span *ngIf="!placaValida()&& placaTouched" class="error-message">El formato de la placa es
+                        incorrecto.</span>
+
                 </div>
                 <div class="dropdown">
-                    <button class="btn2 btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Tipo vehiculo
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" (click)="accion1()">Opción 1</a>
-                        <a class="dropdown-item" href="#" (click)="accion2()">Opción 2</a>
-                        <a class="dropdown-item" href="#" (click)="accion3()">Opción 3</a>
+                    <button class="dropbtn" (click)="toggleDropdown()">{{ tipoVehiculoSeleccionado }}</button>
+                    <div class="dropdown-content" [ngClass]="{ 'show': isDropdownOpen }">
+                      <a *ngFor="let opcion of opciones" (click)="selectTipoVehiculo(opcion)">{{ opcion }}</a>
                     </div>
-                </div>
+                  </div>
+                  
+                  
                 <button type="submit" class="btn btn-primary" (click)="ingresarPlaca()">Agregar</button>
             </form>
         </div>
@@ -67,29 +68,29 @@
             </div>
             <div class="tablaVehiculos">
                 <table class="table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Vehiculo</th>
-                      <th scope="col">Tipo de vehiculo</th>
-                      <th scope="col">Placa</th>
-                      <th scope="col">Ingreso</th>
-                      <th scope="col">Tarifa</th>
-                      <th scope="col">Lugar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let vehiculo of vehiculos">
-                      <td>{{ vehiculo.vehiculo }}</td>
-                      <td>{{ vehiculo.tipo }}</td>
-                      <td>{{ vehiculo.placa }}</td>
-                      <td>{{ vehiculo.ingreso }}</td>
-                      <td>{{ vehiculo.tarifa }}</td>
-                      <td>{{ vehiculo.lugar }}</td>
-                    </tr>
-                  </tbody>
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Vehiculo</th>
+                            <th scope="col">Tipo de vehiculo</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Ingreso</th>
+                            <th scope="col">Tarifa</th>
+                            <th scope="col">Lugar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vehiculo of vehiculos">
+                            <td>{{ vehiculo.vehiculo }}</td>
+                            <td>{{ vehiculo.tipo }}</td>
+                            <td>{{ vehiculo.placa }}</td>
+                            <td>{{ vehiculo.ingreso }}</td>
+                            <td>{{ vehiculo.tarifa }}</td>
+                            <td>{{ vehiculo.lugar }}</td>
+                        </tr>
+                    </tbody>
                 </table>
-              </div>
-              
+            </div>
+
             <div class="botonCobro">
                 <button type="submit" class="btn3" (click)="ingresarPlaca()">Generar Cobro</button>
 
