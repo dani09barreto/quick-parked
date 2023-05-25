@@ -8,6 +8,7 @@ import { LoginComponent } from './modules/autenticacion/login/login.component';
 import { RegistroVehiculosComponent } from './modules/dashboard/registro-vehiculos/registro-vehiculos.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
