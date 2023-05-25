@@ -14,13 +14,8 @@ export class RegistroVehiculosComponent {
   cuposDisponibles: string = 'Cupos Disponibles: ';
   cuposReservados: string = 'Cupos Reservados: ';
   tipoVehiculos: tipoVehiculo[] = []
-  displayedColumns: string[] = ['column1', 'column2', 'column3', 'column4', 'column5', 'column6'];
-  dataSource = [
-    { column1: 'Dato 1', column2: 'Dato 2', column3: 'Dato 3', column4: 'Dato 4', column5: 'Dato 5', column6: 'Dato 6' },
-    { column1: 'Dato 1', column2: 'Dato 2', column3: 'Dato 3', column4: 'Dato 4', column5: 'Dato 5', column6: 'Dato 6' }
+  vehiculos: any[] | undefined; // Variable para almacenar los datos de los vehículos
 
-    // Agrega más objetos de datos según sea necesario
-  ];
   ngOnInit(){
     this.vehiculoService.getAllTipoVehiculos().subscribe((tipoVehiculos: tipoVehiculo[]) => {
       this.tipoVehiculos = tipoVehiculos

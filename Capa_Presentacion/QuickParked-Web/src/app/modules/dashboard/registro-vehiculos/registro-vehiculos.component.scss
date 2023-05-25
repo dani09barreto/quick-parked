@@ -66,6 +66,7 @@ header {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    background-color: #edefef;
     float: left;
 }
 
@@ -133,6 +134,7 @@ header {
     align-items: center;
 }
 
+
 .btn {
     margin-left: 150px;
     width: 170px;
@@ -160,6 +162,20 @@ header {
     color: #6b6a6a;
     border-color: #525252;
 }
+.btn3 {
+    margin-bottom: 30px;
+    width: 240px;
+    height: 60 px;
+    display:flex;
+    align-items: end;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #2489C3;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    border-color: none;
+}
 
 .tituloLista {
     display: flex;
@@ -172,6 +188,7 @@ header {
     background-color: #2489C3;
     border-radius: 20px;
     padding: 8px;
+    padding-left: 50px;
     padding-right: 50%;
     color: #edefef;
     font-family: Arial, Helvetica, sans-serif;
@@ -188,36 +205,15 @@ header {
     display: flex;
 }
 
-.mat-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 3px;
-}
-
-.mat-table th,
-.mat-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-}
-
-.mat-header-row,
-.mat-row {
-    border-bottom: 1px solid #ccc;
-}
-
-.mat-header-row:last-child,
-.mat-row:last-child {
-    border-bottom: none;
-}
-
 .tablaVehiculos {
-    background-color: #62aaa6;
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-left: 10%;
+    padding-bottom: 20%;
+    padding-left: 8%;
+    padding-right: 8%;
 }
 
-.btn.botonCobro {
-    background-color: #2489C3;
+.botonCobro{
+    padding-left: 65%;
 }

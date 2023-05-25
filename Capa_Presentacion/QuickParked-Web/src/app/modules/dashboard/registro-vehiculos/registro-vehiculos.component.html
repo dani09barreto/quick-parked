@@ -66,40 +66,33 @@
                 <p class="cuposReservados">{{ cuposReservados }}</p>
             </div>
             <div class="tablaVehiculos">
-                <mat-table  [dataSource]="dataSource" matSort>
-                    <ng-container matColumnDef="column1">
-                      <th mat-header-cell *matHeaderCellDef>Vehiculo</th>
-                      <td mat-cell *matCellDef="let element">{{ element.column1 }}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="column2">
-                        <th mat-header-cell *matHeaderCellDef> Tipo Vehiculo</th>
-                        <td mat-cell *matCellDef="let element">{{ element.column2 }}</td>
-                      </ng-container>
-                      <ng-container matColumnDef="column3">
-                        <th mat-header-cell *matHeaderCellDef>Placa</th>
-                        <td mat-cell *matCellDef="let element">{{ element.column3 }}</td>
-                      </ng-container>
-                      <ng-container matColumnDef="column4">
-                        <th mat-header-cell *matHeaderCellDef>Ingreso</th>
-                        <td mat-cell *matCellDef="let element">{{ element.column4 }}</td>
-                      </ng-container>
-                      <ng-container matColumnDef="column5">
-                        <th mat-header-cell *matHeaderCellDef>Tarifa</th>
-                        <td mat-cell *matCellDef="let element">{{ element.column5 }}</td>
-                      </ng-container>
-                      <ng-container matColumnDef="column6">
-                        <th mat-header-cell *matHeaderCellDef>Lugar</th>
-                        <td mat-cell *matCellDef="let element">{{ element.column6 }}</td>
-                      </ng-container>
-                      <div class="columnastabla">
-                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;">
-                        </mat-row>
-                      </div>
-                  
-                </mat-table>
-            </div>
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Vehiculo</th>
+                      <th scope="col">Tipo de vehiculo</th>
+                      <th scope="col">Placa</th>
+                      <th scope="col">Ingreso</th>
+                      <th scope="col">Tarifa</th>
+                      <th scope="col">Lugar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let vehiculo of vehiculos">
+                      <td>{{ vehiculo.vehiculo }}</td>
+                      <td>{{ vehiculo.tipo }}</td>
+                      <td>{{ vehiculo.placa }}</td>
+                      <td>{{ vehiculo.ingreso }}</td>
+                      <td>{{ vehiculo.tarifa }}</td>
+                      <td>{{ vehiculo.lugar }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
             <div class="botonCobro">
+                <button type="submit" class="btn3" (click)="ingresarPlaca()">Generar Cobro</button>
+
 
             </div>
 
