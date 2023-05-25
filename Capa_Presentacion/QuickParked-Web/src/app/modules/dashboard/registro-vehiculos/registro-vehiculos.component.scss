@@ -3,7 +3,7 @@ header {
     display: flex;
     align-items: center;
     border-top: none;
-    height: 70px;
+    height: 10%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     /* Agregar una sombra abajo del encabezado */
 }
@@ -37,9 +37,10 @@ header {
 }
 
 .cont-izq img {
-    width: 80%;
+    width: 90%;
     padding-left: 30px;
-    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,48 +51,173 @@ header {
     width: 40%;
     height: 100%;
     display: block;
-    float: left;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     background-color: #edefef;
     border-right: 5px;
-    border-right: black;
+    border-right-color: black;
 }
 
 .cont-der {
     width: 60%;
     height: 100%;
     display: block;
-    float: left;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
-    background-color: #edefef;
+    float: left;
 }
 
-.container::after {
+.contenedor {
+    padding-top: 2px;
+    height: 90%;
+    display: flex;
+}
+
+.linea {
+    width: 2px;
+    height: auto;
+    background-color: gray;
+}
+
+.contenedor::after {
     display: table;
-    padding: 20px;
+    height: 100%;
 }
 
-.switch {
+.switch-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.switch input[type="radio"] {
-    transform: scale(1.5);
-    padding: 20px;
+.switch-container input[type="radio"] {
+    transform: scale(2.5);
+    background-color: #2489C3;
 }
 
-.switch label {
+.switch1 {
+    padding-right: 150px;
+}
+
+.switch-container label {
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
     font-size: 30px;
+    padding-left: 10px;
     /* Fuente en negrita */
     color: #908a8a;
-    padding: 10px;
 }
 
 .login-form {
-	max-width: 500px;
-	border-radius: 10px;
+    padding-left: 50px;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.form-control {
+    border-radius: 10px;
+    height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #908a8a;
+    font-size: 30px;
+}
+
+.dropdown-menu {
+    margin-bottom: 50px;
+}
+
+.form-group {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    margin-left: 150px;
+    width: 170px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #2489C3;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn2 {
+    margin-bottom: 30px;
+    width: 270px;
+    height: 60 px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #6b6a6a;
+    border-color: #525252;
+}
+
+.tituloLista {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo {
+    margin-top: 13%;
+    background-color: #2489C3;
+    border-radius: 20px;
+    padding: 8px;
+    padding-right: 50%;
+    color: #edefef;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8px;
+}
+
+.cuposDisponibles {
+    margin-left: 100px;
+    padding-right: 400px;
+}
+
+.cupos {
+    padding-top: 8%;
+    display: flex;
+}
+
+.mat-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 3px;
+}
+
+.mat-table th,
+.mat-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.mat-header-row,
+.mat-row {
+    border-bottom: 1px solid #ccc;
+}
+
+.mat-header-row:last-child,
+.mat-row:last-child {
+    border-bottom: none;
+}
+
+.tablaVehiculos {
+    background-color: #62aaa6;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.btn.botonCobro {
+    background-color: #2489C3;
 }
