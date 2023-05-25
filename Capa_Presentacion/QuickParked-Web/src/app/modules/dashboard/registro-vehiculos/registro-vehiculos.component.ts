@@ -17,7 +17,7 @@ export class RegistroVehiculosComponent {
   placaTouched: boolean = false;
   tipoVehiculos: tipoVehiculo[] = []
   materials: string[] = ['Material 1', 'Material 2', 'Material 3'];
-  tipoVehiculoSeleccionado: string = 'Tipo vehiculo';
+  tipoVehiculoSeleccionado: string = 'Tipo de vehiculo';
   isDropdownOpen: boolean = false;
   opciones: string[] = []
   vehiculos: any[] | undefined; // Variable para almacenar los datos de los vehículos
@@ -60,7 +60,7 @@ export class RegistroVehiculosComponent {
 
   }
   generarCobro():void{
-    
+
   }
 
 }

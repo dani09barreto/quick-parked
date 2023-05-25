@@ -46,11 +46,9 @@
                 <div class="dropdown">
                     <button class="dropbtn" (click)="toggleDropdown()">{{ tipoVehiculoSeleccionado }}</button>
                     <div class="dropdown-content" [ngClass]="{ 'show': isDropdownOpen }">
-                      <a *ngFor="let opcion of opciones" (click)="selectTipoVehiculo(opcion)">{{ opcion }}</a>
+                        <a *ngFor="let opcion of opciones" (click)="selectTipoVehiculo(opcion)">{{ opcion }}</a>
                     </div>
-                  </div>
-                  
-                  
+                </div>
                 <button type="submit" class="btn btn-primary" (click)="ingresarPlaca()">Agregar</button>
             </form>
         </div>
