@@ -34,5 +34,8 @@ export class RegistroVehiculosComponent {
   ingresarPlaca():void{
 
   }
+  generarCobro():void{
+    
+  }
 
 }
