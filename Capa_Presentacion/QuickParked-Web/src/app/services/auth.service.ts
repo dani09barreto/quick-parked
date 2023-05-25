@@ -55,7 +55,7 @@ export class AuthService {
         user.rolId = response.rolId;
         user.rolNombre = response.rolNombre;
         user.username = response.username;
-
+        console.log(token)
         //Guardar el token y el usuario
         localStorage.setItem('token', token);
         localStorage.setItem('currentUser', JSON.stringify(user));

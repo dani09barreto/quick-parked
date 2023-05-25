@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './modules/autenticacion/login/login.component';
 import { RegistroVehiculosComponent } from './modules/dashboard/registro-vehiculos/registro-vehiculos.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
+import { AuthInterceptor } from './shared/interceptor/auth.intercepetor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,13 @@ import {MatTableModule} from '@angular/material/table';
     BrowserAnimationsModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
