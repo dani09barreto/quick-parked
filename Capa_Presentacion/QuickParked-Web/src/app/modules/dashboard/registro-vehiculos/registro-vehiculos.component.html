@@ -74,29 +74,29 @@
             <div class="tablaVehiculos">
                 <table class="table">
                     <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Vehiculo</th>
-                            <th scope="col">Tipo de vehiculo</th>
-                            <th scope="col">Placa</th>
-                            <th scope="col">Ingreso</th>
-                            <th scope="col">Tarifa</th>
-                            <th scope="col">Lugar</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Vehiculo</th>
+                        <th scope="col">Tipo de vehiculo</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Ingreso</th>
+                        <th scope="col">Tarifa</th>
+                        <th scope="col">Lugar</th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let vehiculo of vehiculos">
-                            <td>{{ vehiculo.tipoVehiculo === 24 ? 'Moto' : 'Carro' }}</td>
-                            <td>{{ vehiculo.id }}</td>
-                            <td>{{ vehiculo.placa }}</td>
-                            <td>{{ vehiculo.placa }}</td>
-                            <td>{{ vehiculo.usuario }}</td>
-                            <td>{{ "XD" }}</td>
-                        </tr>
+                      <tr *ngFor="let vehiculo of vehiculos">
+                        <td>{{ vehiculo.tipoVehiculo === 24 ? 'Moto' : 'Carro' }}</td>
+                        <td>{{ vehiculo.id }}</td>
+                        <td>{{ vehiculo.placa }}</td>
+                        <td>{{ vehiculo.placa }}</td>
+                        <td>{{ vehiculo.usuario }}</td>
+                        <td>{{ "XD" }}</td>
+                      </tr>
                     </tbody>
-                </table>
+                  </table>
             </div>
             <div class="botonCobro">
-                <button type="submit" class="btn3" (click)="generarCobro()">Generar Cobro</button>
+                <button type="submit" class="btn3" (click)="openDialog2()">Generar Cobro</button>
             </div>
         </div>
     </div>

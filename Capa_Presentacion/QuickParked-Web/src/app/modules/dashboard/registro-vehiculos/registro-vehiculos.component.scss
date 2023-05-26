@@ -227,12 +227,26 @@ header {
     align-items: center;
     display: flex;
     justify-content: center;
-    padding-bottom: 20%;
     padding-left: 8%;
-    padding-right: 8%;
+    padding-right: 2%;
+    max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;
+}
+.tablaVehiculos table{
+    width: 100%;
+}
+.tablaVehiculos thead {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+  }
+.table{
+    background-color: #e3dfeb;
+    padding: 20px;
 }
 
 .botonCobro{
+    margin-top: 10px;
     padding-left: 65%;
 }
 .invalid-input {
