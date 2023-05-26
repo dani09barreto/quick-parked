@@ -55,12 +55,15 @@ export class AuthService {
         user.rolId = response.rolId;
         user.rolNombre = response.rolNombre;
         user.username = response.username;
-        console.log(token)
         //Guardar el token y el usuario
         localStorage.setItem('token', token);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.authenticationResponseSubject.next(response);
       })
     );
+  }
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
   }
 }

@@ -18,7 +18,7 @@
         </div>
         <div class="btnLogout">
             <button class="button">
-                <img src="/assets/exit.png" alt="Imagen" class="svgIcon">
+                <img src="/assets/exit.png" alt="Imagen" class="svgIcon" (click)="logout()">
             </button>
         </div>
     </header>
@@ -34,7 +34,7 @@
                     <label for="radio1">Carro</label>
                 </div>
                 <div class="switch2">
-                    <input type="radio" id="radio2" name="radioGroup" (click)="updateRegex('moto')">
+                    <input type="radio" id="radio2" name="radioGroup" (click)="updateRegex('moto')" >
                     <label for="radio2">Moto</label>
                 </div>
             </div>
@@ -47,12 +47,15 @@
                         incorrecto.</span>
 
                 </div>
-                <div class="dropdown">
-                    <button class="dropbtn" (click)="toggleDropdown()">{{ tipoVehiculoSeleccionado }}</button>
+                <div class="dropdown" [ngClass]="{ 'disable-dropdown': tipoVehiculoSeleccionado === 'moto' }">
+                    <button class="dropbtn" (click)="toggleDropdown()" [disabled]="tipoVehiculoSeleccionado === 'moto'">{{ tipoVehiculoSeleccionado }}</button>
                     <div class="dropdown-content" [ngClass]="{ 'show': isDropdownOpen }">
-                        <a *ngFor="let opcion of opciones" (click)="selectTipoVehiculo(opcion)">{{ opcion }}</a>
+                      <a *ngFor="let opcion of opciones" (click)="selectTipoVehiculo(opcion)">{{ opcion }}</a>
                     </div>
-                </div>
+                  </div>
+                  
+                  
+                  
                 <button type="submit" class="btn btn-primary" (click)="ingresarPlaca()">Agregar</button>
             </form>
         </div>
