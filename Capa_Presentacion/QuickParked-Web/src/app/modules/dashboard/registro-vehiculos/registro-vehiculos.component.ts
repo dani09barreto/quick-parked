@@ -5,6 +5,7 @@ import { DashboardModule } from '../dashboard.module';
 import { MatDialog, MatDialogConfig } from'@angular/material/dialog';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
 import { tipoVehiculo } from 'src/app/shared/model/tipo.vehiculo';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'qp-registro-vehiculos',
@@ -12,15 +13,17 @@ import { tipoVehiculo } from 'src/app/shared/model/tipo.vehiculo';
   styleUrls: ['./registro-vehiculos.component.scss']
 })
 export class RegistroVehiculosComponent {
-  constructor(private router: Router, private vehiculoService:VehiculosService,public dialog: MatDialog) {}
+
+  constructor(private router: Router, private vehiculoService:VehiculosService,public dialog: MatDialog,private authService:AuthService) {}
+
   placa: string = '';
   cuposDisponibles: string = 'Cupos Disponibles: ';
   cuposReservados: string = 'Cupos Reservados: ';
   placaTouched: boolean = false;
   mostrarComponenteHijo: boolean= false;
   tipoVehiculos: tipoVehiculo[] = []
-  materials: string[] = ['Material 1', 'Material 2', 'Material 3'];
-  tipoVehiculoSeleccionado: string = 'Tipo de vehiculo';
+  isMotoSelected: boolean = true; 
+  tipoVehiculoSeleccionado: string = 'Tipo de vehiculo ⬇️';
   isDropdownOpen: boolean = false;
   opciones: string[] = []
   vehiculos: any[] | undefined; // Variable para almacenar los datos de los vehículos
@@ -47,7 +50,6 @@ export class RegistroVehiculosComponent {
       this.regex = '^[A-Z]{3}\\d{2}[A-Z]$'; // Expresión regular para 'Moto'
     }
   }
-  
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -82,6 +84,10 @@ export class RegistroVehiculosComponent {
   
     this.dialog.open(AjusteCuentaComponent, dialogConfig);
   }
-  
+
+  logout(){
+    this.authService.logout()
+    this.router.navigate(["/login"])
+  }
 
 }
