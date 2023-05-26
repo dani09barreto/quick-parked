@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from'@angular/material/dialog';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
 import { tipoVehiculo } from 'src/app/shared/model/tipo.vehiculo';
 import { AuthService } from 'src/app/services/auth.service';
+import { CobrarComponent } from '../cobrar/cobrar.component';
 
 @Component({
   selector: 'qp-registro-vehiculos',
@@ -83,6 +84,23 @@ export class RegistroVehiculosComponent {
     dialogConfig.panelClass = 'custom-dialog-container';
   
     this.dialog.open(AjusteCuentaComponent, dialogConfig);
+  }
+  openDialog2() {
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+  
+    // Personaliza la posición del diálogo
+    dialogConfig.position = {
+      left: '1000px',
+      top: '80px'
+    };
+  
+    // Personaliza el estilo del diálogo
+    dialogConfig.panelClass = 'custom-dialog-container';
+  
+    this.dialog.open(CobrarComponent, dialogConfig);
   }
 
   logout(){
