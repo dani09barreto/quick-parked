@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardModule } from '../dashboard.module';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'qp-ajuste-cuenta',
@@ -7,6 +9,8 @@ import { DashboardModule } from '../dashboard.module';
   styleUrls: ['./ajuste-cuenta.component.scss']
 })
 export class AjusteCuentaComponent {
+  constructor(private dialogRef: MatDialogRef<AjusteCuentaComponent>) { }
+
   nombre: string = '';
   cedula: string = '';
   telefono: string = '';
@@ -15,5 +19,8 @@ export class AjusteCuentaComponent {
 
   actualizar():void{
 
+  }
+  goBack() {
+    this.dialogRef.close();
   }
 }

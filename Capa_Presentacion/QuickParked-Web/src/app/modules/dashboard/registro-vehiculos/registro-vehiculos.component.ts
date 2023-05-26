@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AjusteCuentaComponent } from '../ajuste-cuenta/ajuste-cuenta.component';
 import { DashboardModule } from '../dashboard.module';
+import { MatDialog, MatDialogConfig } from'@angular/material/dialog';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
 import { tipoVehiculo } from 'src/app/shared/model/tipo.vehiculo';
 
@@ -11,7 +12,7 @@ import { tipoVehiculo } from 'src/app/shared/model/tipo.vehiculo';
   styleUrls: ['./registro-vehiculos.component.scss']
 })
 export class RegistroVehiculosComponent {
-  constructor(private router: Router, private vehiculoService:VehiculosService) {}
+  constructor(private router: Router, private vehiculoService:VehiculosService,public dialog: MatDialog) {}
   placa: string = '';
   cuposDisponibles: string = 'Cupos Disponibles: ';
   cuposReservados: string = 'Cupos Reservados: ';
@@ -64,9 +65,23 @@ export class RegistroVehiculosComponent {
   generarCobro():void{
 
   }
-  toggleMostrarComponenteHijo() {
-    this.mostrarComponenteHijo = !this.mostrarComponenteHijo;
-    console.log(this.mostrarComponenteHijo)
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+  
+    // Personaliza la posición del diálogo
+    dialogConfig.position = {
+      left: '50px',
+      top: '50px'
+    };
+  
+    // Personaliza el estilo del diálogo
+    dialogConfig.panelClass = 'custom-dialog-container';
+  
+    this.dialog.open(AjusteCuentaComponent, dialogConfig);
   }
+  
 
 }

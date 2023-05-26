@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AjusteCuentaComponent } from './ajuste-cuenta/ajuste-cuenta.component';
 import { CobrarComponent } from './cobrar/cobrar.component';
 import { RegistroVehiculosComponent } from './registro-vehiculos/registro-vehiculos.component';
@@ -31,10 +31,11 @@ import { RegistroVehiculosComponent } from './registro-vehiculos/registro-vehicu
     MatSelectModule,
     MatButtonModule,
     MatMenuModule,
+    MatDialogModule,
     MatTableModule,
     MatIconModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
   ]
 })
 export class DashboardModule { }

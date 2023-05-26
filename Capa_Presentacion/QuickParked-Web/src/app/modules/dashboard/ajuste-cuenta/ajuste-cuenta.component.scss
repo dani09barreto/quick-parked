@@ -1,6 +1,9 @@
 body{
     max-width: fit-content;
-    margin: none;
+    margin: 7px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e0e2e3;
 
 }
 .button {
@@ -59,28 +62,27 @@ body{
 }
 
 .botonBack{
-    padding: 40px;
+    padding: 20px;
 }
 .tituloPerfil{
     color: #2489C3;
-    padding-left: 40px;
+    padding-left: 20px;
 }
 .infoPerfil{
     display: flex;
 }
 .nombrePerfil{
-    padding-left: 10px;
+    padding-left: 15px;
     color: #2489C3;
     font-family: Arial, Helvetica, sans-serif;
     font-style: bold;
 }
 .imagenPerfil{ 
-    padding-top: 50px;
+    padding-top: 20px;
     width: 50%;
     display: block;
     justify-content: center;
     align-items: center;
-    margin-left: 30px;
 }
 .foto{
     position: relative;
@@ -90,7 +92,7 @@ body{
     display: flex;
     width: 170px;
     height: 170px;
-    padding-left: 30px;
+    padding-left: 10px;
     padding-top: 5px;
 }
 .datosPerfil{
@@ -99,7 +101,7 @@ body{
 .botonActualizar{
     display: flex;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 20px;
     padding-left: 150px;
 }
 .form-group{

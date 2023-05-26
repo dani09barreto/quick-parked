@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './modules/autenticacion/login/login.component';
 import { RegistroVehiculosComponent } from './modules/dashboard/registro-vehiculos/registro-vehiculos.component';
@@ -18,6 +19,7 @@ import { AuthInterceptor } from './shared/interceptor/auth.intercepetor';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatDialogModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
