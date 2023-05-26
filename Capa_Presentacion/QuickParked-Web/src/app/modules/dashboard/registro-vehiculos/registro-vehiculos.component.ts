@@ -80,10 +80,12 @@ export class RegistroVehiculosComponent {
       this.tipoVehiculoSeleccionado === 'Tipo de vehiculo ⬇️'
     ) {
       alert('NO PUEDEN HABER CAMPOS VACIOS!');
+      location.reload();
       return;
     }
     if (!this.placaValida()) {
       alert('Tiene que ser una placa valida!');
+      location.reload();
       return;
     }
 
@@ -98,6 +100,7 @@ export class RegistroVehiculosComponent {
       vehiculo.usuario = usuarioId;
     } else {
       alert('Hubo un error obteniendo el id del usuario');
+      location.reload();
       return;
     }
    
@@ -111,6 +114,7 @@ export class RegistroVehiculosComponent {
         // Maneja el error de acuerdo a tus necesidades
       }
     );
+    location.reload();
   }
   obtenerIdTipo(
     tipos: tipoVehiculo[],
