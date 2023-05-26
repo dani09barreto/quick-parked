@@ -12,13 +12,13 @@ export class AjusteCuentaComponent {
   constructor(private dialogRef: MatDialogRef<AjusteCuentaComponent>) { }
 
   nombre: string = '';
-  cedula: string = '';
+  apellido: string = '';
   telefono: string = '';
   imagenUrl: string= '';
 
 
   actualizar():void{
-
+    
   }
   goBack() {
     this.dialogRef.close();

@@ -56,7 +56,7 @@
                   
                   
                   
-                <button type="submit" class="btn btn-primary" (click)="ingresarPlaca()">Agregar</button>
+                <button type="submit" class="btn btn-primary" (click)="ingresarVehiculo()">Agregar</button>
             </form>
         </div>
         <hr class="linea">
@@ -85,18 +85,18 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let vehiculo of vehiculos">
-                            <td>{{ vehiculo.vehiculo }}</td>
-                            <td>{{ vehiculo.tipo }}</td>
+                            <td>{{ vehiculo.tipoVehiculo === 24 ? 'Moto' : 'Carro' }}</td>
+                            <td>{{ vehiculo.id }}</td>
                             <td>{{ vehiculo.placa }}</td>
-                            <td>{{ vehiculo.ingreso }}</td>
-                            <td>{{ vehiculo.tarifa }}</td>
-                            <td>{{ vehiculo.lugar }}</td>
+                            <td>{{ vehiculo.placa }}</td>
+                            <td>{{ vehiculo.usuario }}</td>
+                            <td>{{ "XD" }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="botonCobro" (click)="openDialog2()">
-                <button type="submit" class="btn3" (click)="ingresarPlaca()">Generar Cobro</button>
+            <div class="botonCobro">
+                <button type="submit" class="btn3" (click)="generarCobro()">Generar Cobro</button>
             </div>
         </div>
     </div>
