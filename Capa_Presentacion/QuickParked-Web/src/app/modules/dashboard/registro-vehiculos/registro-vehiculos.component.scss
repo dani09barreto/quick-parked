@@ -222,7 +222,6 @@ header {
     padding-top: 8%;
     display: flex;
 }
-
 .tablaVehiculos {
     align-items: center;
     display: flex;
@@ -231,21 +230,42 @@ header {
     padding-right: 2%;
     max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
-    margin-top: 2rem;
-}
-.tablaVehiculos table{
+    position: relative;
+    border: #000000;
+  }
+  
+  .tablaVehiculos table {
     width: 100%;
-}
-.tablaVehiculos thead {
+  }
+  
+  .tablaVehiculos thead {
     position: sticky;
     top: 0;
-    background-color: #f9f9f9;
+    height: 40px;
+    z-index: 2;
   }
-.table{
-    background-color: #e3dfeb;
+  
+  .tablaVehiculos tbody {
+    top: 150px;
+    position: relative;
+    background-color: #DADADA;
+  }
+  
+  .table {
     padding: 20px;
-}
+  }
+  
+  .bodyTabla {
+    max-height: auto;
+    position: relative;
+  }
 
+  .disable-dropdown {
+    opacity: 0.5; /* Opcional: Cambiar la opacidad para indicar que está deshabilitado */
+    pointer-events: none; /* Opcional: Evitar interacciones con el dropdown deshabilitado */
+  }
+  
+  
 .botonCobro{
     margin-top: 10px;
     padding-left: 65%;

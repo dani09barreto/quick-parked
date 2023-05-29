@@ -28,9 +28,11 @@ export class RegistroVehiculosComponent {
   cuposReservados: string = 'Cupos Reservados: 10D';
   placaTouched: boolean = false;
   mostrarComponenteHijo: boolean = false;
+  tipoVehiculoSeleccionado: string = 'carro';
+  isDropdownDisabled: boolean = false;
   tipoVehiculos: tipoVehiculo[] = [];
   isMotoSelected: boolean = true;
-  tipoVehiculoSeleccionado: string = 'Tipo de vehiculo ⬇️';
+  tipoVehiculoSeleccionadodropdown: string = 'Tipo de vehiculo ⬇️';
   isDropdownOpen: boolean = false;
   opciones: string[] = [];
   vehiculos: Vehiculo[] = []// Variable para almacenar los datos de los vehículos
@@ -62,6 +64,13 @@ export class RegistroVehiculosComponent {
     if (option === 'moto') {
       this.regex = '^[A-Z]{3}\\d{2}[A-Z]$'; // Expresión regular para 'Moto'
     }
+  }
+
+  habilitardrop(tipoVehiculo: string) {
+    this.tipoVehiculoSeleccionado = tipoVehiculo;
+    
+    // Habilitar o deshabilitar el dropdown según el tipo de vehículo seleccionado
+    this.isDropdownDisabled = (tipoVehiculo === 'moto');
   }
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
