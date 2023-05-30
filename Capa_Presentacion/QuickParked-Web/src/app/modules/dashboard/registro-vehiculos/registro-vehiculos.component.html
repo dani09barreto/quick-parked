@@ -1,1 +1,108 @@
-<p>registro-vehiculos works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro vehiculos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    
+    <header>
+        <div class="btnUser">
+            <button class="button" (click)="openDialog()">
+                <img src="/assets/user.png" alt="Imagen" class="svgIcon">
+            </button>
+        </div>
+        <div class="btnLogout">
+            <button class="button">
+                <img src="/assets/exit.png" alt="Imagen" class="svgIcon" (click)="logout()">
+            </button>
+        </div>
+    </header>
+    
+    
+    <div class="contenedor">
+        
+        <div class="cont-izq">
+            <img src="/assets/logo_quikParkedHorizontal.png" alt="Imagen">
+            <div class="switch-container">
+                <div class="switch1">
+                  <input type="radio" id="radio1" name="radioGroup" [checked]="tipoVehiculoSeleccionado === 'carro'" (click)="habilitardrop('carro')">
+                  <label for="radio1">Carro</label>
+                </div>
+                <div class="switch2">
+                  <input type="radio" id="radio2" name="radioGroup" [checked]="tipoVehiculoSeleccionado === 'moto'" (click)="habilitardrop('moto')" >
+                  <label for="radio2">Moto</label>
+                </div>
+              </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="text" class="form-control custom-input" id="placa" name="placa" placeholder="Placa"
+                        [(ngModel)]="placa" required maxlength="6" [ngClass]="{ 'invalid-input': !placaValida()}"
+                        (input)="convertToUppercase()" (blur)="placaTouched = true">
+                    <span *ngIf="!placaValida()&& placaTouched" class="error-message">El formato de la placa es
+                        incorrecto.</span>
+
+                </div>
+                <div class="dropdown" [ngClass]="{ 'disable-dropdown': tipoVehiculoSeleccionado === 'moto' }">
+                    <button class="dropbtn" (click)="toggleDropdown()" [disabled]="tipoVehiculoSeleccionado === 'moto'">{{ tipoVehiculoSeleccionadodropdown }}</button>
+                    <div class="dropdown-content" [ngClass]="{ 'show': isDropdownOpen }">
+                      <a *ngFor="let opcion of opciones" (click)="selectTipoVehiculo(opcion)">{{ opcion }}</a>
+                    </div>
+                  </div>
+                <button type="submit" class="btn btn-primary" (click)="ingresarVehiculo()">Agregar</button>
+            </form>
+        </div>
+        <hr class="linea">
+        <div class="cont-der">
+            <div class="tituloLista">
+                <div class="titulo">
+                    <h1>Lista de Carros</h1>
+                </div>
+            </div>
+            <div class="cupos">
+                <p class="cuposDisponibles">{{ cuposDisponibles }}</p>
+
+                <p class="cuposReservados">{{ cuposReservados }}</p>
+            </div>
+            <div class="tablaVehiculos">
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Vehiculo</th>
+                      <th scope="col">Tipo de vehiculo</th>
+                      <th scope="col">Placa</th>
+                      <th scope="col">Ingreso</th>
+                      <th scope="col">Tarifa</th>
+                      <th scope="col">Lugar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let vehiculo of vehiculos">
+                      <td>{{ vehiculo.tipoVehiculo === 24 ? 'Moto' : 'Carro' }}</td>
+                      <td>{{ vehiculo.id }}</td>
+                      <td>{{ vehiculo.placa }}</td>
+                      <td>{{ vehiculo.placa }}</td>
+                      <td>{{ vehiculo.usuario }}</td>
+                      <td>{{ "XD" }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+            <div class="botonCobro">
+                <button type="submit" class="btn3" (click)="openDialog2()">Generar Cobro</button>
+            </div>
+        </div>
+    </div>
+ 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

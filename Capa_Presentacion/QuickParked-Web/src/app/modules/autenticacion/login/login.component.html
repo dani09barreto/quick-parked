@@ -13,20 +13,20 @@
         <div class="row">
             <div class="col-izq">
                 <form class="login-form">
-                    <img src="/assets/logo_quikParkedHorizontal.png" alt="Imagen">
-                    <h2>Iniciar Sesión</h2>
-                    <div class="form-group">
-                        <label for="username">Ingresa con tu:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                  <img src="/assets/logo_quikParkedHorizontal.png" alt="Imagen">
+                  <h2>Iniciar Sesión</h2>
+                  <div class="form-group">
+                    <label for="username">Ingresa con tu:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese su usuario" [(ngModel)]="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña" [(ngModel)]="password">
+                  </div>
+                  <button type="submit" class="btn btn-primary" (click)="iniciarSesion()">Iniciar Sesión</button>
                 </form>
-                <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>
+                <a href="/recuperarContrasenia">¿Olvidaste tu contraseña?</a>
+              </div>
             <div class="col-der">
                 <img src="/assets/Login-image.jpg" alt="imagen login">
             </div>

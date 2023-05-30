@@ -1,1 +1,67 @@
-<p>ajuste-cuenta works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro vehiculos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="botonBack">
+        <button class="button" (click)="goBack()">
+            <img src="/assets/back.png" alt="Imagen" class="svgIcon">
+        </button>
+    </div>
+    <div class="tituloPerfil">
+        <h1>Mi Cuenta</h1>
+    </div>
+    <div class="infoPerfil">
+        <div class="imagenPerfil">
+            <div class="foto">
+                <img *ngIf="imagenUrl; else imagenDefault" [src]="imagenUrl" alt="Imagen">
+                <ng-template #imagenDefault>
+                    <img src="/assets/profile-user.png" alt="Imagen por defecto">
+                </ng-template>
+                <button class="button2">
+                    <img src="/assets/edit-image.png" alt="Imagen" class="svgIcon">
+                </button>
+            </div>
+            <div class="nombrePerfil">
+                <h2 class="nombrePerfil">
+                    Julieta Acosta
+                </h2>
+            </div>
+        </div>
+        <div class="datosPerfil">
+            <div class="form-group">
+                <input type="text" class="form-control custom-input" id="Nombre" name="Nombre" placeholder="Nombre"
+                    [(ngModel)]="nombre">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control custom-input" id="Apellido" name="Apellido" placeholder="Apellido"
+                    [(ngModel)]="apellido">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control custom-input" id="Telefono" name="Telefono"
+                    placeholder="Telefono" [(ngModel)]="telefono">
+            </div>
+        </div>
+    </div>
+    <div class="botonActualizar">
+        <button type="submit" class="btn3" (click)="actualizar()">Actualizar</button>
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

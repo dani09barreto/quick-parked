@@ -1,0 +1,128 @@
+body{
+    max-width: fit-content;
+    margin: 7px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f0f2f4;
+}
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #cccecf;
+    border: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 30px rgba(10, 10, 10, 0.164);
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+    position: relative;
+}
+.botonBack{
+    padding: 20px;
+}
+.btnUser {
+    padding-left: 30px;
+    padding-right: 1370px;
+}
+
+.svgIcon {
+    width: 30px;
+    transition-duration: .3s;
+}
+.titulo{
+    padding-left: 20px;
+    color: #8d8d8e;
+}
+h2{
+    font-size: 30px;
+}
+.ingresoPlaca{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.botonCobro{
+    padding-left: 20px;
+}
+.botonBuscar{
+    padding-left: 20px;
+}
+.btn3 {
+    width: 100px;
+    height: 40px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #2489C3;
+    font-size: 25px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #ffffff;
+    border-color: none;
+}
+.form-group{
+    padding-top: 17px;
+    width: 250px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    height: 30px;
+}
+.tituloLista{
+    display: flex;
+    margin-left: 20px;
+    padding-top: 15px;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    background-color: #2489C3;
+    border-radius: 10px;
+    height: 40px;
+    width: 270px;
+    color: #ffffff;
+}
+.datos{
+    display: flex;
+}
+.tituloDatos{
+    display: block;
+    margin-left: 35px;
+    margin-top: 20px;
+}
+.datosTitulo{
+    color: #8d8d8e;
+    font-size: 17px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.datosTotal{
+    color: #2489C3;
+    font-size: 20px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.infoDatos{
+    display: block;
+    margin-left: 35px;
+    margin-top: 20px;
+}
+.datosMostrar{
+    color: #8d8d8e;
+    font-size: 17px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.inferior{
+    padding-left: 20px;
+    display: flex;
+}
+.botonDiv{
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

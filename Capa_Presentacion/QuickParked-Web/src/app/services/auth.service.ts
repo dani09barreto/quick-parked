@@ -24,20 +24,30 @@ export class AuthService {
         new BehaviorSubject<RespuestaIniciarSesion>(JSON.parse(user));
     }
   }
+  public get currentUserValue(): Usuario {
+    let user = new Usuario
+    user.usuarioId = this.authenticationResponseSubject.value.usuarioId
+    user.rolId = this.authenticationResponseSubject.value.rolId
+    user.username = this.authenticationResponseSubject.value.username
+    return user
+  }
   isLoggedIn() {
-    return false;
+    return this.currentUserValue.usuarioId != "0";
   }
   login(username: string, password: string) {
-    const url = `${environment.backendAPI}/IniciarSesion`;
-  
+    const url = `${environment.backendAPI}/api/usuarios/IniciarSesion`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     const objIniciarSesion: IniciarSesion = new IniciarSesion();
     objIniciarSesion.username = username;
     objIniciarSesion.password = password;
-    return this.http.post<RespuestaIniciarSesion>(url, objIniciarSesion).pipe(
+    return this.http.post<RespuestaIniciarSesion>(url, objIniciarSesion, { headers }).pipe(
       map((response) => {
-        // extract the token and user from the response
+        // Obtener token de la respuesta
         const token = response.token;
 
+        //Definir al usuario obtenido
         const user: Usuario = new Usuario();
         user.nombre = response.nombre;
         user.apellido = response.apellido;
@@ -45,11 +55,15 @@ export class AuthService {
         user.rolId = response.rolId;
         user.rolNombre = response.rolNombre;
         user.username = response.username;
-
+        //Guardar el token y el usuario
         localStorage.setItem('token', token);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.authenticationResponseSubject.next(response);
       })
     );
+  }
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
   }
 }
