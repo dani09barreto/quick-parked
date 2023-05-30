@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EstadoRegistroParqueaderoRepository extends JpaRepository<EstadoRegistroParqueadero, Integer> {
+    EstadoRegistroParqueadero findByEstado(String estado);
 }

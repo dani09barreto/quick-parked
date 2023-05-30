@@ -2,6 +2,8 @@ package puj.quickparked.model;
 
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,12 +15,12 @@ public class RegistroParqueaderoDTO {
     private Integer id;
 
     @NotNull
-    private LocalDate horaEntrada;
+    private LocalDateTime horaEntrada;
 
     @NotNull
-    private LocalDate horaSalida;
+    private LocalDateTime horaSalida;
 
-    private LocalDate horaReserva;
+    private LocalDateTime horaReserva;
 
     private Double montoReserva;
 

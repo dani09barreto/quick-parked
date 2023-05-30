@@ -2,6 +2,8 @@ package puj.quickparked.model;
 
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +15,7 @@ public class VentaDTO {
     private Integer id;
 
     @NotNull
-    private LocalDate fechaPago;
+    private LocalDateTime fechaPago;
 
     @NotNull
     private Double iva;

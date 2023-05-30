@@ -1,6 +1,8 @@
 package puj.quickparked.rest;
 
+import puj.quickparked.model.IngresoVehiculoDTO;
 import puj.quickparked.model.RegistroParqueaderoDTO;
+import puj.quickparked.model.ReservaVehiculoDTO;
 import puj.quickparked.service.RegistroParqueaderoService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -59,4 +61,25 @@ public class RegistroParqueaderoResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/ingresarVehiculo")
+    public ResponseEntity<String> ingresarVehiculo(
+            @RequestBody @Valid final IngresoVehiculoDTO ingresoVehiculoDTO) {
+        try {
+            final Integer slot = registroParqueaderoService.ingresarVehiculo(ingresoVehiculoDTO);
+            return new ResponseEntity<>(slot.toString(), HttpStatus.OK);
+        } catch (Exception errorMessage) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage.getMessage());
+        }
+    }
+
+    @PostMapping("/crearReserva")
+    public ResponseEntity<String> crearReserva(
+            @RequestBody @Valid final ReservaVehiculoDTO reservaVehiculoDTO) {
+        try {
+            final Integer slot = registroParqueaderoService.crearReserva(reservaVehiculoDTO);
+            return new ResponseEntity<>(slot.toString(), HttpStatus.OK);
+        } catch (Exception errorMessage) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage.getMessage());
+        }
+    }
 }

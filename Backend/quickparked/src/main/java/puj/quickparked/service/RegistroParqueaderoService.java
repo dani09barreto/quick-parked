@@ -1,21 +1,20 @@
 package puj.quickparked.service;
 
-import puj.quickparked.domain.EstadoRegistroParqueadero;
-import puj.quickparked.domain.RegistroParqueadero;
-import puj.quickparked.domain.SedeParqueadero;
-import puj.quickparked.domain.Usuario;
-import puj.quickparked.domain.Vehiculo;
+import org.springframework.cglib.core.Local;
+import puj.quickparked.domain.*;
+import puj.quickparked.model.IngresoVehiculoDTO;
 import puj.quickparked.model.RegistroParqueaderoDTO;
-import puj.quickparked.repos.EstadoRegistroParqueaderoRepository;
-import puj.quickparked.repos.RegistroParqueaderoRepository;
-import puj.quickparked.repos.SedeParqueaderoRepository;
-import puj.quickparked.repos.UsuarioRepository;
-import puj.quickparked.repos.VehiculoRepository;
+import puj.quickparked.model.ReservaVehiculoDTO;
+import puj.quickparked.repos.*;
 import puj.quickparked.util.NotFoundException;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class RegistroParqueaderoService {
@@ -25,18 +24,20 @@ public class RegistroParqueaderoService {
     private final EstadoRegistroParqueaderoRepository estadoRegistroParqueaderoRepository;
     private final SedeParqueaderoRepository sedeParqueaderoRepository;
     private final VehiculoRepository vehiculoRepository;
+    private final TipoVehiculoRepository tipoVehiculoRepository;
 
     public RegistroParqueaderoService(
             final RegistroParqueaderoRepository registroParqueaderoRepository,
             final UsuarioRepository usuarioRepository,
             final EstadoRegistroParqueaderoRepository estadoRegistroParqueaderoRepository,
             final SedeParqueaderoRepository sedeParqueaderoRepository,
-            final VehiculoRepository vehiculoRepository) {
+            final VehiculoRepository vehiculoRepository, TipoVehiculoRepository tipoVehiculoRepository) {
         this.registroParqueaderoRepository = registroParqueaderoRepository;
         this.usuarioRepository = usuarioRepository;
         this.estadoRegistroParqueaderoRepository = estadoRegistroParqueaderoRepository;
         this.sedeParqueaderoRepository = sedeParqueaderoRepository;
         this.vehiculoRepository = vehiculoRepository;
+        this.tipoVehiculoRepository = tipoVehiculoRepository;
     }
 
     public List<RegistroParqueaderoDTO> findAll() {
@@ -70,7 +71,7 @@ public class RegistroParqueaderoService {
     }
 
     private RegistroParqueaderoDTO mapToDTO(final RegistroParqueadero registroParqueadero,
-            final RegistroParqueaderoDTO registroParqueaderoDTO) {
+                                            final RegistroParqueaderoDTO registroParqueaderoDTO) {
         registroParqueaderoDTO.setId(registroParqueadero.getId());
         registroParqueaderoDTO.setHoraEntrada(registroParqueadero.getHoraEntrada());
         registroParqueaderoDTO.setHoraSalida(registroParqueadero.getHoraSalida());
@@ -84,7 +85,7 @@ public class RegistroParqueaderoService {
     }
 
     private RegistroParqueadero mapToEntity(final RegistroParqueaderoDTO registroParqueaderoDTO,
-            final RegistroParqueadero registroParqueadero) {
+                                            final RegistroParqueadero registroParqueadero) {
         registroParqueadero.setHoraEntrada(registroParqueaderoDTO.getHoraEntrada());
         registroParqueadero.setHoraSalida(registroParqueaderoDTO.getHoraSalida());
         registroParqueadero.setHoraReserva(registroParqueaderoDTO.getHoraReserva());
@@ -104,4 +105,79 @@ public class RegistroParqueaderoService {
         return registroParqueadero;
     }
 
+    public Integer ingresarVehiculo(final IngresoVehiculoDTO ingresoVehiculoDTO) {
+        RegistroParqueadero registroParqueadero = new RegistroParqueadero();
+
+        Vehiculo vehiculo = vehiculoRepository.findByPlaca(ingresoVehiculoDTO.getPlaca());
+        if (vehiculo != null) {
+            registroParqueadero.setVehiculo(vehiculo);
+
+            EstadoRegistroParqueadero estadoRegistroParqueadero = estadoRegistroParqueaderoRepository.findByEstado("Estacionado");
+            registroParqueadero.setEstadoRegistroParqueadero(estadoRegistroParqueadero);
+            Optional<Usuario> usuarioQuery = usuarioRepository.findById(ingresoVehiculoDTO.getUsuarioTrabajadorId());
+
+            if (usuarioQuery.isPresent()) {
+                Usuario usuarioTrabajador = usuarioQuery.get();
+                registroParqueadero.setUsuarioTrabajador(usuarioTrabajador);
+                registroParqueadero.setSedeParqueadero(usuarioTrabajador.getSedeParqueadero());
+
+                RegistroParqueadero registroValidacion = registroParqueaderoRepository.findByPlacaAndEstacionado(ingresoVehiculoDTO.getPlaca());
+                if (registroValidacion == null) {
+                    Integer slot = registroParqueaderoRepository.getSlotDisponible(usuarioTrabajador.getSedeParqueadero().getId());
+
+                    if (slot != null) {
+                        registroParqueadero.setHoraEntrada(LocalDateTime.now());
+                        registroParqueaderoRepository.save(registroParqueadero);
+                        return slot;
+                    } else {
+                        throw new RuntimeException("No se encontró un slot disponible para el parqueadero.");
+                    }
+                } else {
+                    throw new RuntimeException("El vehículo ya se encuentra estacionado en esa sede.");
+                }
+            } else {
+                throw new RuntimeException("No se encontró un usuario con el ID " + ingresoVehiculoDTO.getUsuarioTrabajadorId());
+            }
+        } else {
+            throw new RuntimeException("El vehiculo con placa " + ingresoVehiculoDTO.getPlaca() + " no fue encontrado. Debe crearlo primero.");
+        }
+    }
+
+    public Integer crearReserva(ReservaVehiculoDTO reservaVehiculoDTO) {
+        String placa = reservaVehiculoDTO.getPlaca();
+        Integer sedeParqueaderoId = reservaVehiculoDTO.getSedeParqueaderoId();
+        Vehiculo vehiculo = vehiculoRepository.findByPlaca(placa);
+        if (vehiculo != null) {
+            Optional<SedeParqueadero> sedeParqueaderoQuery = sedeParqueaderoRepository.findById(sedeParqueaderoId);
+            if (sedeParqueaderoQuery.isPresent()) {
+                SedeParqueadero sedeParqueadero = sedeParqueaderoQuery.get();
+                RegistroParqueadero registroValidacion = registroParqueaderoRepository.findByPlacaAndReservado(placa);
+                if (registroValidacion == null) {
+                    RegistroParqueadero registroParqueadero = new RegistroParqueadero();
+                    EstadoRegistroParqueadero estadoRegistroParqueadero = estadoRegistroParqueaderoRepository.findByEstado("Reservado");
+                    registroParqueadero.setEstadoRegistroParqueadero(estadoRegistroParqueadero);
+                    registroParqueadero.setVehiculo(vehiculo);
+                    registroParqueadero.setHoraReserva(LocalDateTime.now());
+                    registroParqueadero.setMontoReserva(reservaVehiculoDTO.getMontoReserva());
+                    registroParqueadero.setSedeParqueadero(sedeParqueadero);
+                    Integer slot = registroParqueaderoRepository.getSlotDisponible(sedeParqueaderoId);
+                    registroParqueadero.setSlot(slot.toString());
+                    registroParqueaderoRepository.save(registroParqueadero);
+                    if (slot != null) {
+                        return slot;
+                    } else {
+                        throw new RuntimeException("No se encontró un slot disponible para el parqueadero " + sedeParqueadero.getNombreSede());
+                    }
+                } else {
+                    throw new RuntimeException("El vehículo ya cuenta con una reserva o está estacionado en una sede..");
+                }
+            } else {
+                throw new RuntimeException("No se encontró una sede parqueadero con el ID " + sedeParqueaderoId);
+            }
+        } else {
+            throw new RuntimeException("No se encontró un vehículo con la placa " + placa);
+        }
+    }
+
 }
+

@@ -57,4 +57,9 @@ public class SedeParqueaderoResource {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/listarPorPropietario/{id}")
+    public ResponseEntity<List<SedeParqueaderoDTO>> getSedeParqueaderoByPropietarioId(@PathVariable final Integer id) {
+        return ResponseEntity.ok(sedeParqueaderoService.getByPropietarioId(id));
+    }
+
 }

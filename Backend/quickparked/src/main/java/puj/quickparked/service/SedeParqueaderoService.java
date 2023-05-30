@@ -7,6 +7,8 @@ import puj.quickparked.repos.ParqueaderoRepository;
 import puj.quickparked.repos.SedeParqueaderoRepository;
 import puj.quickparked.util.NotFoundException;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -76,6 +78,13 @@ public class SedeParqueaderoService {
                 .orElseThrow(() -> new NotFoundException("parqueadero not found"));
         sedeParqueadero.setParqueadero(parqueadero);
         return sedeParqueadero;
+    }
+
+    public List<SedeParqueaderoDTO> getByPropietarioId(final Integer id) {
+        final Set<SedeParqueadero> sedeParqueaderos = sedeParqueaderoRepository.findByPropietarioId(id);
+        return sedeParqueaderos.stream()
+                .map((sedeParqueadero) -> mapToDTO(sedeParqueadero, new SedeParqueaderoDTO()))
+                .toList();
     }
 
 }

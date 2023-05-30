@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,16 +33,19 @@ public class RegistroParqueadero {
     private Integer id;
 
     @Column(nullable = false)
-    private LocalDate horaEntrada;
-
-    @Column(nullable = false)
-    private LocalDate horaSalida;
+    private LocalDateTime horaEntrada;
 
     @Column
-    private LocalDate horaReserva;
+    private LocalDateTime horaSalida;
+
+    @Column
+    private LocalDateTime horaReserva;
 
     @Column
     private Double montoReserva;
+
+    @Column(nullable = false)
+    private String slot;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuarioTrabajadorId", nullable = false)

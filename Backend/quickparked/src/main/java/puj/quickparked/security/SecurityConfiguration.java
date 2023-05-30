@@ -36,9 +36,10 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeHttpRequests().requestMatchers("/actuator/health**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/api/usuarios/**", "/error").permitAll()
                 .requestMatchers("/v3/api-docs", "/swagger-ui/**", "/configuration/ui", "/swagger-resources/**",
-                        "/configuration/security", "/swagger-ui.html", "/webjars/**")
+        "/configuration/security", "/swagger-ui.html", "/webjars/**")
                 .permitAll().anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

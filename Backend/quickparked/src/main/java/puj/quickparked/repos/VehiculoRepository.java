@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Integer> {
+
+    Vehiculo findByPlaca(String placa);
 }

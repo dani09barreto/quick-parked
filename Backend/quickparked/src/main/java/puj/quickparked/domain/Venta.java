@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +32,7 @@ public class Venta {
     private Integer id;
 
     @Column(nullable = false)
-    private LocalDate fechaPago;
+    private LocalDateTime fechaPago;
 
     @Column(nullable = false)
     private Double iva;
