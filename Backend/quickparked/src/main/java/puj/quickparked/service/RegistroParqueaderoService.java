@@ -158,7 +158,6 @@ public class RegistroParqueaderoService {
                     registroParqueadero.setEstadoRegistroParqueadero(estadoRegistroParqueadero);
                     registroParqueadero.setVehiculo(vehiculo);
                     registroParqueadero.setHoraReserva(LocalDateTime.now());
-                    registroParqueadero.setMontoReserva(reservaVehiculoDTO.getMontoReserva());
                     registroParqueadero.setSedeParqueadero(sedeParqueadero);
                     Integer slot = registroParqueaderoRepository.getSlotDisponible(sedeParqueaderoId);
                     registroParqueadero.setSlot(slot.toString());
@@ -178,6 +177,5 @@ public class RegistroParqueaderoService {
             throw new RuntimeException("No se encontró un vehículo con la placa " + placa);
         }
     }
-
 }
 

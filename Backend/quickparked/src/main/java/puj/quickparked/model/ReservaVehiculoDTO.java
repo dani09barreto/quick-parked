@@ -6,5 +6,4 @@ import lombok.Data;
 public class ReservaVehiculoDTO {
     private String placa;
     private Integer sedeParqueaderoId;
-    private Double montoReserva;
 }
