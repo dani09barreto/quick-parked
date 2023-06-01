@@ -4,6 +4,8 @@ import { Observable, catchError } from 'rxjs';
 import { tipoVehiculo } from '../shared/model/tipo.vehiculo';
 import { environment } from 'src/environments/environment';
 import { Vehiculo } from '../shared/model/vehiculo';
+import { IngresarVehiculo } from '../shared/model/ingreso.vehiculo';
+import { RespuestaCobro } from '../shared/model/respuesta.cobro';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +19,8 @@ export class VehiculosService {
     
     return this.http.get<tipoVehiculo[]>(`${environment.backendAPI}/api/tipoVehiculos`)
   }
-  createVehiculo(vehiculoDTO: any): Observable<number> {
-    return this.http.post<number>(`${environment.backendAPI}/api/vehiculos`, vehiculoDTO, { headers: this.headers })
+  createVehiculo(vehiculo: Vehiculo): Observable<number> {
+    return this.http.post<number>(`${environment.backendAPI}/api/vehiculos`, vehiculo, { headers: this.headers })
       .pipe(
         catchError((error: any) => {
           console.error('Error al crear el vehículo:', error);
@@ -29,5 +31,12 @@ export class VehiculosService {
   getAllVehiculos():Observable<Vehiculo[]>{
     return this.http.get<Vehiculo[]>(`${environment.backendAPI}/api/vehiculos`)
   }
+  crearVehiculo(vehiculo:Vehiculo){
+    return this.http.post<any>(`${environment.backendAPI}/api/vehiculos`,vehiculo)
+  }
+  registrarVehiculo(ingresarVehiculo:IngresarVehiculo):Observable<any>{
+    return this.http.post<any>(`${environment.backendAPI}/api/registroParqueaderos/ingresarVehiculo`,ingresarVehiculo)
+  }
+  
   
 }

@@ -83,7 +83,7 @@
                   <tbody>
                     <tr *ngFor="let vehiculo of vehiculos">
                       <td>{{ vehiculo.tipoVehiculo === 24 ? 'Moto' : 'Carro' }}</td>
-                      <td>{{ vehiculo.id }}</td>
+                      <td>{{ getNombreTipoVehiculo(vehiculo.tipoVehiculo) }}</td>
                       <td>{{ vehiculo.placa }}</td>
                       <td>{{ vehiculo.placa }}</td>
                       <td>{{ vehiculo.usuario }}</td>
