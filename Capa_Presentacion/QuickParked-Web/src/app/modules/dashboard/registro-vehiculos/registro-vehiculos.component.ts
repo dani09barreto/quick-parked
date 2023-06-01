@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CobrarComponent } from '../cobrar/cobrar.component';
 import { Vehiculo } from 'src/app/shared/model/vehiculo';
 import { isEmpty } from 'rxjs';
+import { IngresarVehiculo } from 'src/app/shared/model/ingreso.vehiculo';
 
 @Component({
   selector: 'qp-registro-vehiculos',
@@ -27,6 +28,7 @@ export class RegistroVehiculosComponent {
   cuposDisponibles: string = 'Cupos Disponibles: 10D';
   cuposReservados: string = 'Cupos Reservados: 10D';
   placaTouched: boolean = false;
+  opcionSeleccionada: string = '';
   mostrarComponenteHijo: boolean = false;
   tipoVehiculoSeleccionado: string = 'carro';
   isDropdownDisabled: boolean = false;
@@ -35,20 +37,22 @@ export class RegistroVehiculosComponent {
   tipoVehiculoSeleccionadodropdown: string = 'Tipo de vehiculo ⬇️';
   isDropdownOpen: boolean = false;
   opciones: string[] = [];
-  vehiculos: Vehiculo[] = []// Variable para almacenar los datos de los vehículos
+  vehiculos: Vehiculo[] = []; // Variable para almacenar los datos de los vehículos
   regex: string = '^[A-Za-z]{3}\\d{3}$'; // Expresión regular por defecto para 'Carro'
 
   ngOnInit() {
     this.vehiculoService
       .getAllTipoVehiculos()
       .subscribe((tipoVehiculos: tipoVehiculo[]) => {
-        console.log(tipoVehiculos)
+        console.log(tipoVehiculos);
         this.tipoVehiculos = tipoVehiculos;
         this.opciones = tipoVehiculos.map((opcion) => opcion.tipo);
       });
-    this.vehiculoService.getAllVehiculos().subscribe((vehiculosRegistrados : Vehiculo[])=>{
-      this.vehiculos = vehiculosRegistrados
-    })
+    this.vehiculoService
+      .getAllVehiculos()
+      .subscribe((vehiculosRegistrados: Vehiculo[]) => {
+        this.vehiculos = vehiculosRegistrados;
+      });
   }
   accion(opcion: string) {
     console.log('Opción seleccionada:', opcion);
@@ -68,16 +72,16 @@ export class RegistroVehiculosComponent {
 
   habilitardrop(tipoVehiculo: string) {
     this.tipoVehiculoSeleccionado = tipoVehiculo;
-    
+
     // Habilitar o deshabilitar el dropdown según el tipo de vehículo seleccionado
-    this.isDropdownDisabled = (tipoVehiculo === 'moto');
+    this.isDropdownDisabled = tipoVehiculo === 'moto';
   }
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  selectTipoVehiculo(material: string) {
-    this.tipoVehiculoSeleccionado = material;
+  selectTipoVehiculo(opcion: string) {
+    this.opcionSeleccionada = opcion;
     this.isDropdownOpen = false;
   }
   convertToUppercase() {
@@ -86,7 +90,7 @@ export class RegistroVehiculosComponent {
   ingresarVehiculo(): void {
     if (
       this.placa.trim().length === 0 ||
-      this.tipoVehiculoSeleccionado === 'Tipo de vehiculo ⬇️'
+      this.opcionSeleccionada === 'Tipo de vehiculo ⬇️'
     ) {
       alert('NO PUEDEN HABER CAMPOS VACIOS!');
       location.reload();
@@ -100,7 +104,10 @@ export class RegistroVehiculosComponent {
 
     const vehiculo: Vehiculo = new Vehiculo();
     vehiculo.placa = this.placa;
-    const tipoVehiculoSeleccionadoNum = this.obtenerIdTipo(this.tipoVehiculos,this.tipoVehiculoSeleccionado)
+    const tipoVehiculoSeleccionadoNum = this.obtenerIdTipo(
+      this.tipoVehiculos,
+      this.opcionSeleccionada
+    );
     vehiculo.tipoVehiculo = tipoVehiculoSeleccionadoNum;
     const currentUserString = localStorage.getItem('currentUser'); // Obtiene el valor del Local Storage
     if (currentUserString) {
@@ -112,23 +119,42 @@ export class RegistroVehiculosComponent {
       location.reload();
       return;
     }
-   
+
     this.vehiculoService.createVehiculo(vehiculo).subscribe(
       (createdId: number) => {
         console.log('Vehículo creado con ID:', createdId);
-        // Realiza cualquier acción adicional después de crear el vehículo
+        const ingresarVehiculo: IngresarVehiculo = new IngresarVehiculo();
+        ingresarVehiculo.placa = vehiculo.placa;
+        const currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {
+          const currentUserObject = JSON.parse(currentUser);
+          const usuarioId = currentUserObject.usuarioId;
+          ingresarVehiculo.usuarioTrabajadorId = usuarioId
+          
+        }else{
+
+          return
+        }
+        this.vehiculoService.registrarVehiculo(ingresarVehiculo).subscribe(
+          (respuesta) => {
+            // Aquí puedes manejar la respuesta del servidor
+            alert(`Vehiculo registrado con exito, parqueadero asignado: ${respuesta}`);
+            location.reload();
+          },
+          (error) => {
+            // Aquí puedes manejar los errores de la solicitud
+            console.error(error);
+          }
+        );
       },
       (error) => {
-        console.error('Error al crear el vehículo:', error);
+        error('Error al crear el vehículo:', error);
         // Maneja el error de acuerdo a tus necesidades
       }
     );
-    location.reload();
+    
   }
-  obtenerIdTipo(
-    tipos: tipoVehiculo[],
-    tipo: string
-  ): number {
+  obtenerIdTipo(tipos: tipoVehiculo[], tipo: string): number {
     const tipoEncontrado = tipos.find((obj) => obj.tipo === tipo);
     return tipoEncontrado!!.id;
   }
@@ -152,24 +178,41 @@ export class RegistroVehiculosComponent {
   }
   openDialog2() {
     const dialogConfig = new MatDialogConfig();
-  
+
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-  
+
     // Personaliza la posición del diálogo
     dialogConfig.position = {
       left: '1000px',
-      top: '80px'
+      top: '80px',
     };
-  
+
     // Personaliza el estilo del diálogo
     dialogConfig.panelClass = 'custom-dialog-container';
-  
+
     this.dialog.open(CobrarComponent, dialogConfig);
   }
 
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+  // En tu componente
+  getNombreTipoVehiculo(id: number): string {
+    switch (id) {
+      case 4:
+        return 'Automovil';
+      case 14:
+        return 'Camioneta';
+      case 34:
+        return 'Furgon';
+      case 24:
+        return 'No aplica';
+      case 44:
+        return 'Camion';
+      default:
+        return 'Desconocido';
+    }
   }
 }
