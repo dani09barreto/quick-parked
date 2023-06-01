@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/dialog_parking_libre_rounded_background"
+    android:background="@drawable/dialog_parking_ocupado_rounded_background"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -17,10 +17,10 @@
 
         <ImageView
             android:id="@+id/imageParqueadero"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
             android:layout_width="219dp"
             android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <RatingBar
@@ -61,21 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Cupos disponibles"
+            android:text="Sin Cupos disponibles"
             android:textColor="@color/grey_600"
-            android:layout_gravity="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewCupos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="12"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/quick_color"
             android:layout_gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -97,7 +84,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginEnd="70dp"
             android:layout_gravity="center"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
 
             <ImageView
@@ -106,7 +93,7 @@
                 android:layout_height="33dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_directions_car_24" />
+                app:srcCompat="@drawable/baseline_directions_car_24_red" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -114,7 +101,7 @@
                 android:layout_height="33dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_delivery_dining_24" />
+                app:srcCompat="@drawable/baseline_delivery_dining_24_red" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -138,37 +125,40 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/imageViewFavoritos"
+            android:id="@+id/imageView4"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/baseline_favorite_24" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="310dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="10dp"
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:textColor="@color/grey_600"
+            android:text="Lo sentimos, el parqueadero no cuenta con cupos disponibles ¿Te gustaria que te avisemos cuando hayan cupos disponibles?"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center">
 
-
-            <Button
-                android:id="@+id/buttonIrSinReserva"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ir sin reserva"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/buttonReservar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/light_green_600"
-                android:text="Reservar"
+                android:backgroundTint="#D7080B"
+                android:text="Avisame"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
