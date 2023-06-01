@@ -18,18 +18,25 @@ public class SedeParqueaderoDTO {
 
     @NotNull
     @Size(max = 255)
-    private String latitud;
+    private Double latitud;
 
     @NotNull
     @Size(max = 255)
-    private String longitud;
+    private Double longitud;
 
     @NotNull
     private Integer cupo;
+
+    private Integer cupoOcupado;
 
     private String imagen;
 
     @NotNull
     private Integer parqueadero;
 
+    private Double tarifa;
+
+    private Double tarifaMoto;
+
+    private Integer calificacion;
 }

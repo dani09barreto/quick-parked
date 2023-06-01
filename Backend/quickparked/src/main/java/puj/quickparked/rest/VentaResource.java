@@ -39,6 +39,11 @@ public class VentaResource {
         return ResponseEntity.ok(ventaService.get(id));
     }
 
+    @GetMapping("/getVentasSedeParqueadero/{sedeParquederoId}")
+    public ResponseEntity<?> getVentasSedeParqueadero(@PathVariable final Integer sedeParquederoId) {
+        return ResponseEntity.ok(ventaService.getVentasSedeParqueadero(sedeParquederoId));
+    }
+
     @PostMapping
     public ResponseEntity<Integer> createVenta(@RequestBody @Valid final VentaDTO ventaDTO) {
         final Integer createdId = ventaService.create(ventaDTO);

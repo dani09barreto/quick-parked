@@ -34,13 +34,25 @@ public class SedeParqueadero {
     private String nombreSede;
 
     @Column(nullable = false)
-    private String latitud;
+    private Double latitud;
 
     @Column(nullable = false)
-    private String longitud;
+    private Double longitud;
 
     @Column(nullable = false)
     private Integer cupo;
+
+    @Column
+    private Double tarifa;
+
+    @Column
+    private Double tarifaMoto;
+
+    @Column
+    private Integer calificacion;
+
+    @Column
+    private Integer cupoOcupado;
 
     @Column(columnDefinition = "text")
     private String imagen;
