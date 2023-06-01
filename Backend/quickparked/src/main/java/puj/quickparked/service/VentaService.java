@@ -1,19 +1,15 @@
 package puj.quickparked.service;
 
-import org.springframework.cglib.core.Local;
 import puj.quickparked.domain.*;
 import puj.quickparked.model.RespuestaCobroDTO;
 import puj.quickparked.model.VentaDTO;
-import puj.quickparked.repos.EstadoRegistroParqueaderoRepository;
-import puj.quickparked.repos.RegistroParqueaderoRepository;
-import puj.quickparked.repos.VehiculoRepository;
-import puj.quickparked.repos.VentaRepository;
+import puj.quickparked.repos.*;
 import puj.quickparked.util.NotFoundException;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -21,18 +17,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VentaService {
-    private final Double TARIFA_MINUTO = 95d;
     private final VentaRepository ventaRepository;
     private final RegistroParqueaderoRepository registroParqueaderoRepository;
     private final VehiculoRepository vehiculoRepository;
     private final EstadoRegistroParqueaderoRepository estadoRegistroParqueaderoRepository;
+    private final SedeParqueaderoRepository sedeParqueaderoRepository;
 
     public VentaService(final VentaRepository ventaRepository,
-                        final RegistroParqueaderoRepository registroParqueaderoRepository, VehiculoRepository vehiculoRepository, EstadoRegistroParqueaderoRepository estadoRegistroParqueaderoRepository) {
+                        final RegistroParqueaderoRepository registroParqueaderoRepository, VehiculoRepository vehiculoRepository, EstadoRegistroParqueaderoRepository estadoRegistroParqueaderoRepository, SedeParqueaderoRepository sedeParqueaderoRepository) {
         this.ventaRepository = ventaRepository;
         this.registroParqueaderoRepository = registroParqueaderoRepository;
         this.vehiculoRepository = vehiculoRepository;
         this.estadoRegistroParqueaderoRepository = estadoRegistroParqueaderoRepository;
+        this.sedeParqueaderoRepository = sedeParqueaderoRepository;
     }
 
     public List<VentaDTO> findAll() {
@@ -46,6 +43,17 @@ public class VentaService {
         return ventaRepository.findById(id)
                 .map(venta -> mapToDTO(venta, new VentaDTO()))
                 .orElseThrow(NotFoundException::new);
+    }
+
+    public List <VentaDTO> getVentasSedeParqueadero(final Integer sedeParqueaderoId) {
+        List <Venta> ventas = ventaRepository.findBySedeParqueaderoId(sedeParqueaderoId);
+        List <VentaDTO> ventasDto = new ArrayList<>();
+        for (Venta venta : ventas) {
+            VentaDTO ventaDTO = new VentaDTO();
+            mapToDTO(venta, ventaDTO);
+            ventasDto.add(ventaDTO);
+        }
+        return ventasDto;
     }
 
     public Integer create(final VentaDTO ventaDTO) {
@@ -94,7 +102,7 @@ public class VentaService {
                 // Calculando el precio a 95 pesos el minuto.
 
                 Long duracionMinutos = ChronoUnit.MINUTES.between(registroParqueadero.getHoraEntrada(), registroParqueadero.getHoraSalida());
-                Double precio = duracionMinutos * TARIFA_MINUTO;
+                Double precio = duracionMinutos * registroParqueadero.getSedeParqueadero().getTarifa();
 
                 if (registroParqueadero.getHoraReserva() != null) {
                     registroParqueadero.setMontoReserva(precio * 0.03d);
@@ -116,7 +124,9 @@ public class VentaService {
                 respuestaCobroDTO.setValor(precio);
                 respuestaCobroDTO.setPlaca(vehiculo.getPlaca());
                 respuestaCobroDTO.setHoraIngreso(registroParqueadero.getHoraEntrada());
-                respuestaCobroDTO.setTarifa(TARIFA_MINUTO);
+                respuestaCobroDTO.setTarifa(registroParqueadero.getVehiculo().getTipoVehiculo().getTipo().equals("Moto") ?
+                          registroParqueadero.getSedeParqueadero().getTarifaMoto()
+                        : registroParqueadero.getSedeParqueadero().getTarifa());
                 respuestaCobroDTO.setTipoVehiculo(vehiculo.getTipoVehiculo().getTipo());
                 respuestaCobroDTO.setMontoReserva(registroParqueadero.getMontoReserva() != null ? registroParqueadero.getMontoReserva() : 0d);
 
@@ -142,6 +152,9 @@ public class VentaService {
                         EstadoRegistroParqueadero estadoRegistroParqueadero = estadoRegistroParqueaderoRepository.findByEstado("Pagado");
                         registroParqueadero.setEstadoRegistroParqueadero(estadoRegistroParqueadero);
                         estadoRegistroParqueaderoRepository.save(estadoRegistroParqueadero);
+                        SedeParqueadero sedeParqueadero = registroParqueadero.getSedeParqueadero();
+                        sedeParqueadero.setCupoOcupado(sedeParqueadero.getCupoOcupado() - 1);
+                        sedeParqueaderoRepository.save(sedeParqueadero);
                         venta.setFechaPago(LocalDateTime.now());
                         ventaRepository.save(venta);
                         return vueltas.toString();

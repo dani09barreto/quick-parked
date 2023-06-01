@@ -41,6 +41,7 @@ public class SedeParqueaderoService {
     public Integer create(final SedeParqueaderoDTO sedeParqueaderoDTO) {
         final SedeParqueadero sedeParqueadero = new SedeParqueadero();
         mapToEntity(sedeParqueaderoDTO, sedeParqueadero);
+        sedeParqueaderoDTO.setCupoOcupado(0);
         return sedeParqueaderoRepository.save(sedeParqueadero).getId();
     }
 
@@ -64,6 +65,10 @@ public class SedeParqueaderoService {
         sedeParqueaderoDTO.setCupo(sedeParqueadero.getCupo());
         sedeParqueaderoDTO.setImagen(sedeParqueadero.getImagen());
         sedeParqueaderoDTO.setParqueadero(sedeParqueadero.getParqueadero() == null ? null : sedeParqueadero.getParqueadero().getId());
+        sedeParqueaderoDTO.setCalificacion(sedeParqueadero.getCalificacion());
+        sedeParqueaderoDTO.setTarifa(sedeParqueadero.getTarifa());
+        sedeParqueaderoDTO.setCupoOcupado(sedeParqueadero.getCupoOcupado());
+        sedeParqueaderoDTO.setTarifaMoto(sedeParqueadero.getTarifaMoto());
         return sedeParqueaderoDTO;
     }
 
@@ -74,6 +79,10 @@ public class SedeParqueaderoService {
         sedeParqueadero.setLongitud(sedeParqueaderoDTO.getLongitud());
         sedeParqueadero.setCupo(sedeParqueaderoDTO.getCupo());
         sedeParqueadero.setImagen(sedeParqueaderoDTO.getImagen());
+        sedeParqueadero.setCalificacion(sedeParqueaderoDTO.getCalificacion());
+        sedeParqueadero.setTarifa(sedeParqueaderoDTO.getTarifa());
+        sedeParqueadero.setTarifaMoto(sedeParqueaderoDTO.getTarifaMoto());
+        sedeParqueadero.setCupoOcupado(sedeParqueaderoDTO.getCupoOcupado());
         final Parqueadero parqueadero = sedeParqueaderoDTO.getParqueadero() == null ? null : parqueaderoRepository.findById(sedeParqueaderoDTO.getParqueadero())
                 .orElseThrow(() -> new NotFoundException("parqueadero not found"));
         sedeParqueadero.setParqueadero(parqueadero);

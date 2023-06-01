@@ -124,10 +124,14 @@ public class RegistroParqueaderoService {
                 RegistroParqueadero registroValidacion = registroParqueaderoRepository.findByPlacaAndEstacionado(ingresoVehiculoDTO.getPlaca());
                 if (registroValidacion == null) {
                     Integer slot = registroParqueaderoRepository.getSlotDisponible(usuarioTrabajador.getSedeParqueadero().getId());
-
                     if (slot != null) {
+                        // Registro de hora de entrada en caso de que encuentre slots libres.
                         registroParqueadero.setHoraEntrada(LocalDateTime.now());
                         registroParqueaderoRepository.save(registroParqueadero);
+                        // Actualización del cupo restante.
+                        SedeParqueadero sedeParqueadero = usuarioTrabajador.getSedeParqueadero();
+                        sedeParqueadero.setCupoOcupado(sedeParqueadero.getCupoOcupado() + 1);
+                        sedeParqueaderoRepository.save(sedeParqueadero);
                         return slot;
                     } else {
                         throw new RuntimeException("No se encontró un slot disponible para el parqueadero.");
@@ -161,6 +165,7 @@ public class RegistroParqueaderoService {
                     registroParqueadero.setSedeParqueadero(sedeParqueadero);
                     Integer slot = registroParqueaderoRepository.getSlotDisponible(sedeParqueaderoId);
                     registroParqueadero.setSlot(slot.toString());
+                    sedeParqueadero.setCupoOcupado(sedeParqueadero.getCupoOcupado() + 1);
                     registroParqueaderoRepository.save(registroParqueadero);
                     if (slot != null) {
                         return slot;
