@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import puj.quickparked.quickparkedmobile.R;
 
-public class SingUpActivity extends AppCompatActivity {
+public class SingUpActivity extends BasicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

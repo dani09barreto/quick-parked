@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@drawable/dialog_parking_libre_rounded_background">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="109dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:indeterminateTint="@color/quick_color"
+        android:indeterminate="true" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_car"
+        android:layout_width="114dp"
+        android:layout_height="94dp"
+        android:layout_alignTop="@id/progress_bar"
+        android:layout_centerHorizontal="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/carr" />
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/grey_600"
+        android:layout_marginTop="16dp"
+        android:text="Cargando.." />
+
+</RelativeLayout>

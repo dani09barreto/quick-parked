@@ -5,7 +5,7 @@
     <color name="gray_text">#828282</color>
     <color name="gray_background">#F2F2F2</color>
     <color name="quick_color">#2489C3</color>
-
+    <color name="background_app">#f7f6f6</color>
     <!-- google's material design colours from
 http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
 

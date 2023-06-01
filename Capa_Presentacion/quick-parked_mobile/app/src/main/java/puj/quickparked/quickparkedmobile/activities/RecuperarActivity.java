@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import puj.quickparked.quickparkedmobile.databinding.ActivityRecuperarBinding;
 
-public class RecuperarActivity extends AppCompatActivity {
+public class RecuperarActivity extends BasicActivity {
 
     private ActivityRecuperarBinding binding;
 

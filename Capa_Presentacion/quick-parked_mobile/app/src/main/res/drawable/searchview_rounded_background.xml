@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/background_app" /> <!-- Reemplaza "your_background_color" con el color de fondo deseado -->
+    <corners android:radius="25dp" /> <!-- Ajusta el valor de "radius" según tu preferencia para hacerlo más o menos redondeado -->
+    <stroke
+        android:color="@color/grey_400"
+        android:width="2dp" />
+</shape>

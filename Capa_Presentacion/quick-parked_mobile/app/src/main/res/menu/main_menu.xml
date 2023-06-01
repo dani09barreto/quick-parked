@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_user"
             android:icon="@drawable/baseline_person_24"
             android:title="Perfil" />
 
@@ -16,6 +16,11 @@
             android:id="@+id/nav_favorites"
             android:icon="@drawable/baseline_favorite_24"
             android:title="Favoritos" />
+
+        <item
+            android:id="@+id/nav_cerrar_sesion"
+            android:icon="@drawable/baseline_output_24"
+            android:title="Cerrar Sesion" />
 
     </group>
 </menu>

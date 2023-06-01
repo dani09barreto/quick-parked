@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">QuickParkedMobile</string>
+    <string name="app_name">QuickParked-Mobile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="snackBar_dismiss_label">Cerrar</string>
+    <string name="map_id">a7e31d7ef602eb98</string>
+    <string name="error_name_label">el nombre no puede estar vacio</string>
+    <string name="error_last_label">el apellido no puede estar vacio</string>
+    <string name="mail_error_label">El email no puede estar vacio.</string>
+    <string name="error_pass_label">El password no puede estar vacio.</string>
 </resources>
