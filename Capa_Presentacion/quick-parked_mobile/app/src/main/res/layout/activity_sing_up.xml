@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="180dp"
+                android:layout_height="214dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo_quickparked" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:paddingHorizontal="25dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Registrate con tu:"
+                    android:textColor="@color/gray_text"
+                    android:textSize="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sinUpUsername"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shapeAppearanceOverlay="@style/RoundedTextInputLayout"
+                    android:layout_marginTop="10dp"
+                    app:startIconTint="@color/quick_color"
+                    android:hint="Usuario"
+                    android:minHeight="48dp"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:startIconDrawable="@drawable/baseline_person_24"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColorHint="@color/black"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sinUpPassword"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:hint="Contraseña"
+                    app:startIconTint="@color/quick_color"
+                    android:minHeight="48dp"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintTop_toBottomOf="@+id/sinUpUsername"
+                    app:startIconDrawable="@drawable/baseline_password_24"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColorHint="@color/quick_color"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sinUpEmail"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:startIconTint="@color/quick_color"
+                    android:layout_marginTop="10dp"
+                    android:hint="Correo"
+                    android:minHeight="48dp"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintTop_toBottomOf="@+id/sinUpPassword"
+                    app:startIconDrawable="@drawable/baseline_email_24"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColorHint="@color/quick_color"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sinUpName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:hint="Nombres"
+                    app:startIconTint="@color/quick_color"
+                    android:minHeight="48dp"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintTop_toBottomOf="@+id/sinUpEmail"
+                    app:startIconDrawable="@drawable/baseline_person_24"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColorHint="@color/quick_color"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/lastName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:hint="Apellidos"
+                    android:minHeight="48dp"
+                    app:endIconMode="clear_text"
+                    app:startIconTint="@color/quick_color"
+                    app:layout_constraintTop_toBottomOf="@+id/sinUpName"
+                    app:startIconDrawable="@drawable/baseline_person_24"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColorHint="@color/quick_color"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/singUpUserPhone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:startIconTint="@color/quick_color"
+                    android:layout_marginTop="10dp"
+                    android:hint="Telefono"
+                    android:minHeight="48dp"
+                    app:counterMaxLength="10"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lastName"
+                    app:startIconDrawable="@drawable/baseline_phone_android_24"
+                    tools:ignore="MissingConstraints">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textColorHint="@color/black"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_ingresar"
+                    android:layout_width="222dp"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/quick_color"
+                    android:text="Ingresa"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/singUpUserPhone" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
