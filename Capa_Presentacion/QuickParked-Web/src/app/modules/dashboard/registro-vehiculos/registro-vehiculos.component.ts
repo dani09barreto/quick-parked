@@ -28,6 +28,7 @@ export class RegistroVehiculosComponent {
   cuposDisponibles: string = 'Cupos Disponibles: 10D';
   cuposReservados: string = 'Cupos Reservados: 10D';
   placaTouched: boolean = false;
+  opcionSeleccionada: string = '';
   mostrarComponenteHijo: boolean = false;
   tipoVehiculoSeleccionado: string = 'carro';
   isDropdownDisabled: boolean = false;
@@ -79,8 +80,8 @@ export class RegistroVehiculosComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  selectTipoVehiculo(material: string) {
-    this.tipoVehiculoSeleccionado = material;
+  selectTipoVehiculo(opcion: string) {
+    this.opcionSeleccionada = opcion;
     this.isDropdownOpen = false;
   }
   convertToUppercase() {
@@ -89,7 +90,7 @@ export class RegistroVehiculosComponent {
   ingresarVehiculo(): void {
     if (
       this.placa.trim().length === 0 ||
-      this.tipoVehiculoSeleccionado === 'Tipo de vehiculo ⬇️'
+      this.opcionSeleccionada === 'Tipo de vehiculo ⬇️'
     ) {
       alert('NO PUEDEN HABER CAMPOS VACIOS!');
       location.reload();
@@ -105,7 +106,7 @@ export class RegistroVehiculosComponent {
     vehiculo.placa = this.placa;
     const tipoVehiculoSeleccionadoNum = this.obtenerIdTipo(
       this.tipoVehiculos,
-      this.tipoVehiculoSeleccionado
+      this.opcionSeleccionada
     );
     vehiculo.tipoVehiculo = tipoVehiculoSeleccionadoNum;
     const currentUserString = localStorage.getItem('currentUser'); // Obtiene el valor del Local Storage

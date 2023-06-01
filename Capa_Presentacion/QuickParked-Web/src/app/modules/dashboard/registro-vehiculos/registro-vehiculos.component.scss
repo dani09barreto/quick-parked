@@ -223,14 +223,12 @@ header {
     display: flex;
 }
 .tablaVehiculos {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    display: block;
     padding-left: 8%;
     padding-right: 2%;
     max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
-    position: relative;
+    position: sticky;
     border: #000000;
   }
   
@@ -247,12 +245,15 @@ header {
   
   .tablaVehiculos tbody {
     top: 150px;
-    position: relative;
+    position: sticky;
     background-color: #DADADA;
   }
   
-  .table {
+  .table  {
+    max-height: 300px;
     padding: 20px;
+    top: 150px;
+    position: sticky;
   }
   
   .bodyTabla {
@@ -276,8 +277,6 @@ header {
   }
 .error-message{
     color: rgb(138, 0, 0);
-    font-size: 5px;
-    width: 100px;
 }
 .dropdown {
     position: relative;
