@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQL5DBDialect
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    url: jdbc:mysql://b20dadc2ae526a:47f3a08c@us-cdbr-east-06.cleardb.net/heroku_3de33c11d78a6df?reconnect=true
+    username: us-cdbr-east-06.cleardb.net
+    password: 47f3a08c
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 600000
+quickparked:
+  seguridad:
+    semilla: 'ea3f350eacbd706321a84585ff9924962c73f2bef5a9d309fe7cbf006d7e4baa'
+    duracion: 60000

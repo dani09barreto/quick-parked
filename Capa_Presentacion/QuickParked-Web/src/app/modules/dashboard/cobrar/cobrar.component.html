@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro vehiculos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="botonBack" (click)="goBack()">
+        <button class="button">
+            <img src="/assets/back.png" alt="Imagen" class="svgIcon">
+        </button>
+    </div>
+    <div class="titulo">
+        <h2>Ingrese la placa: </h2>
+    </div>
+    <div class="ingresoPlaca">
+        <div class="form-group">
+            <input type="text" class="form-control custom-input" id="placa" name="placa" placeholder="Placa"
+                [(ngModel)]="placa" required maxlength="6" [ngClass]="{ 'invalid-input': !placaValida()}"
+                (input)="convertToUppercase()" (blur)="placaTouched = true">
+            <span *ngIf="!placaValida()&& placaTouched" class="error-message">El formato de la placa es
+                incorrecto.</span>
+        </div>
+        <div class="botonBuscar">
+            <button type="submit" class="btn3" (click)="obtenerFactura()">Buscar</button>
+        </div>
+    </div>
+    <div class="tituloLista">
+        <h3>Informacion de pago</h3>
+    </div>
+    <div class="datos">
+        <div class="tituloDatos">
+            <p class=" datosTitulo "> Placa </p>
+            <p class=" datosTitulo "> Tipo de Vehiculo </p>
+            <p class=" datosTitulo "> Hora de Ingreso </p>
+            <p class=" datosTitulo "> Tarifa </p>
+            <p class=" datosTitulo "> Valor </p>
+            <p class=" datosTitulo "> Recargo por Reserva </p>
+            <p class=" datosTotal "> Total </p>
+        </div>
+        <div class="infoDatos">
+            <p class=" datosMostrar ">{{ placa }}</p>
+            <p class=" datosMostrar ">{{ tipoVehiculo }}</p>
+            <p class=" datosMostrar ">{{ horaIngreso }}</p>
+            <p class=" datosMostrar ">{{ tarifa }}</p>
+            <p class=" datosMostrar ">{{ valor }}</p>
+            <p class=" datosMostrar ">{{ recargoReserva }}</p>
+            <p class=" datosMostrar ">{{ total }}</p>
+        </div>
+    </div>
+    <div class="inferior">
+        <div class="form-group">
+            <input type="text" class="form-control custom-input" id="Valor" name="Valor" placeholder="Valor"
+                [(ngModel)]="valorIngresado">
+        </div>
+        <div class="botonDiv">
+            <div class="botonCobro">
+                <button type="submit" class="btn3" (click)="cobrar()">Cobrar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
