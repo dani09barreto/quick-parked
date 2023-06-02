@@ -27,6 +27,10 @@ public class ReservaDialog extends Dialog{
         getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
     }
 
+    public DialogReservaBinding getBinding() {
+        return binding;
+    }
+
     public void dismissDialog() {
         dismiss();
     }

@@ -17,11 +17,11 @@
 
         <ImageView
             android:id="@+id/imageParqueadero"
+            android:layout_width="180dp"
+            android:layout_height="116dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:layout_width="219dp"
-            android:layout_height="150dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/parqueadero1" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -32,6 +32,7 @@
             android:numStars="5"
             android:stepSize="1"
             android:rating="0"
+            android:progressTint="@color/rating_bar_color"
             style="@style/Widget.AppCompat.RatingBar.Small" />
 
         <TextView

@@ -27,6 +27,10 @@ public class ParqueaderoLibreDialog extends Dialog {
         getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
     }
 
+    public DialogParkingLibreBinding getBinding() {
+        return binding;
+    }
+
     public void dismissDialog() {
         dismiss();
     }
