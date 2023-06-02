@@ -273,7 +273,7 @@ public class MapsFragment extends Fragment {
         sugerenciaParqueaderos.clear();
         for(SedeParqueaderoDTO sedeParqueaderoDTO : sedeParqueaderoDTOS){
             double distancia = DistanceUtils.calculateDistanceInKilometer(lastLocation.latitude, lastLocation.longitude, sedeParqueaderoDTO.getLatitud(), sedeParqueaderoDTO.getLongitud());
-            if (distancia < 1){
+            if (distancia < 1.5){
                 SugerenciaParqueadero sug = new SugerenciaParqueadero(sedeParqueaderoDTO.getNombreSede(), distancia);
                 sugerenciaParqueaderos.add(sug);
                 adapter.notifyDataSetChanged();
